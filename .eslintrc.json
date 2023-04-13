@@ -1,0 +1,94 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:prettier/recommended",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "tsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "alias": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".scss", ".css"],
+        "map": [["@", "./src"]]
+      },
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".scss"],
+        "moduleDirectory": ["node_modules", "src/"]
+      }
+    }
+  },
+  "plugins": [
+    "react",
+    "prettier",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "no-mixed-spaces-and-tabs": 0,
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": false,
+        "optionalDependencies": false,
+        "peerDependencies": false
+      }
+    ],
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "controlComponents": ["input"]
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "camelcase": "off",
+    "react/forbid-prop-types": 0,
+    "react/require-default-props": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "react/default-props-match-prop-types": [0, { "allowRequiredDefaults": true }],
+    "no-param-reassign": 0,
+    "react/no-array-index-key": 0,
+    "react/jsx-props-no-spreading": 0,
+    "import/order": 0,
+    "no-console": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "no-shadow": 0,
+    "no-use-before-define": ["error", { "functions": false, "classes": true, "variables": false }],
+    "no-unused-vars": [
+      1,
+      {
+        "ignoreRestSiblings": false
+      }
+    ],
+    "prettier/prettier": "error",
+    "semi": ["error", "always"],
+    "quotes": ["error", "double"],
+    "indent": ["error", 2],
+    "react/jsx-indent": ["error", 2],
+    "import/extensions": "off",
+    "react/jsx-indent-props": ["error", 2],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/prop-types": [0],
+//    "import/extensions": ["error", { "js": "never", "jsx": "never", "ts": "never", "tsx": "never" }],
+    "import/no-unresolved": [0],
+    "import/prefer-default-export": [0],
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+  }
+}
