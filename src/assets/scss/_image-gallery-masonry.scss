@@ -1,0 +1,36 @@
+.image-gallery-masonry-wrap {
+  .image-gallery-masonry {
+    cursor: zoom-in;
+    .image {
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+      height: 100%;
+      &.is-circled {
+        border-radius: 50%;
+      }
+      &.is-rounded {
+        border-radius: 0.3125rem;
+      }
+      &.has-shadow {
+        box-shadow: $base-shadow;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .image-gallery-prettybox {
+    padding: 1rem;
+    .image-gallery {
+      display: block;
+      height: fit-content;
+      top: 50%;
+      transform: translateY(-50%);
+      figcaption {
+        width: 90%;
+        margin: 0 auto;
+      }
+    }
+  }
+}

@@ -1,83 +1,54 @@
 import type { Config } from "tailwindcss";
 
 export default {
-  content: [],
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       colors: {
         primary: {
-          50: "#FFEBEB",
-          100: "#FECDCD",
-          200: "#FEAFB0",
-          300: "#FD9092",
-          400: "#FD7275",
-          500: "#FC5457",
-          600: "#F22C30",
-          700: "#E70409",
-          800: "#B50307",
-          900: "#830204"
+          "50": "#fbf8fc",
+          "100": "#f5eef9",
+          "200": "#eee0f4",
+          "300": "#e0c7eb",
+          "400": "#cba3dd",
+          "500": "#b67fcd",
+          "600": "#a66abe",
+          "700": "#8b4ea2",
+          "800": "#744485",
+          "900": "#5f386b",
+          "950": "#411f4c"
         },
         secondary: {
-          50: "#FFFAFA",
-          100: "#FDD3D3",
-          200: "#FCACAD",
-          300: "#FA8486",
-          400: "#F95D60",
-          500: "#F73639",
-          600: "#DB1F22",
-          700: "#BF080A",
-          800: "#8E0608",
-          900: "#5D0405"
+          "50": "#f2f8fd",
+          "100": "#e4effa",
+          "200": "#c2def5",
+          "300": "#8dc4ec",
+          "400": "#5faee3",
+          "500": "#298bce",
+          "600": "#1a6eaf",
+          "700": "#16588e",
+          "800": "#174b75",
+          "900": "#184062",
+          "950": "#102841"
         },
         tertiary: {
-          50: "#FAF6FE",
-          100: "#E6DBEF",
-          200: "#D3BFE0",
-          300: "#BFA4D1",
-          400: "#AB89C2",
-          500: "#986DB2",
-          600: "#8452A3",
-          700: "#703794",
-          800: "#5D1B85",
-          900: "#490076"
+          "50": "#fffaeb",
+          "100": "#fff0c6",
+          "200": "#ffdf88",
+          "300": "#ffce5c",
+          "400": "#ffb220",
+          "500": "#f98f07",
+          "600": "#dd6802",
+          "700": "#b74706",
+          "800": "#94360c",
+          "900": "#7a2e0d",
+          "950": "#461502"
         }
-      },
-      transitionDuration: {
-        0: "0ms",
-        400: "400ms",
-        600: "600ms"
-      },
-      zIndex: {
-        "-1": -1,
-        1: 1,
-        5: 5
-      },
-      inset: {
-        "-100": "-100%"
-      },
-      screens: {
-        "tablet": "989px",
-        "max-md": { max: "988px" },
-        "mb": { max: "500px" }
-      },
-      borderWidth: {
-        6: "6px"
-      },
-      boxShadow: {
-        alert: "0 6px 26px rgba(0, 0, 0, 0.1)",
-        base: "0 3px 20px rgba(0, 0, 0, 0.05)"
-      },
-      minHeight: {
-        24: "6rem",
-        "3-5": "14px"
-      },
-      listStyleType: {
-        circle: "circle"
       }
     },
     fontFamily: {
       sans: ["Nunito Sans", "Lato", "Inter", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
-      body: ["Nunito", "Lato", "Helvetica Neue", "Helvetica ", "Arial", "sans-serif"]
+      body: ["Raleway", "Lato", "Helvetica Neue", "Helvetica ", "Arial", "sans-serif"]
     }
   },
   plugins: []
