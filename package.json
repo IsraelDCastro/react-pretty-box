@@ -1,13 +1,63 @@
 {
   "name": "react-pretty-box",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1-beta.1",
   "type": "module",
+  "files": [
+    "dist",
+    "main.d.ts"
+  ],
+  "main": "./dist/react-pretty-box.umd.js",
+  "module": "./dist/react-pretty-box.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/react-pretty-box.es.js",
+      "require": "./dist/react-pretty-box.umd.js"
+    },
+    "./dist/react-pretty-box.css": {
+      "import": "./dist/react-pretty-box.css",
+      "require": "./dist/react-pretty-box.css"
+    },
+    "./dist/react-pretty-box.scss": {
+      "import": "./dist/react-pretty-box.scss",
+      "require": "./dist/react-pretty-box.scss"
+    }
+  },
+  "types": "./dist/components/main.d.ts",
+  "description": "React-Pretty-Box is a ReactJS 18 library that enhances image viewing in web applications. It enables zoom functionality for single images or galleries, allowing users to explore visuals in greater detail. With intuitive controls like pinch-to-zoom and panning, users can easily navigate and examine enlarged images. ",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix"
+  },
+  "keywords": [
+    "ZoomIn",
+    "SCSS",
+    "Modal",
+    "Image",
+    "Prettybox",
+    "Pretty",
+    "Box",
+    "React",
+    "ReactJS",
+    "ReactJS18",
+    "React components",
+    "Components"
+  ],
+  "author": {
+    "name": "Israel De Castro Alfonso",
+    "email": "israeldalfons@gmail.com",
+    "url": "https://castrodev.netlify.app/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IsraelDCastro/vue-pretty-box-project/issues"
+  },
+  "homepage": "https://vue-pretty-box.netlify.app/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IsraelDCastro/vue-pretty-box-project"
   },
   "dependencies": {
     "@nextui-org/react": "^1.0.0-beta.12",

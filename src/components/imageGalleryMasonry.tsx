@@ -6,7 +6,7 @@ import { slideItem } from "@/components/shared/animations";
 import { CloseIcon, NextIcon, PrevIcon } from "@/components/shared/icons";
 
 interface ImageGalleryProps extends DefaultBoxProps {
-  imagesUrl: { img: string; alt: string; figcaption: string }[];
+  imagesUrl?: { img: string; alt: string; figcaption: string }[];
   columns?: number;
   mdColumns?: number;
   xsColumns?: number;
