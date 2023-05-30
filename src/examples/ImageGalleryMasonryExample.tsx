@@ -9,8 +9,8 @@ export default function ImageGalleryMasonryExample() {
       <Grid xs={12} direction="column">
         <Text h3>Image gallery masonry</Text>
         <Text>
-          Image gallery masonry component you can zoom in on an image to see it near and better view it, also you have a slider in the modal
-          to see other ones.
+          The image gallery masonry component enables you to zoom in on an image for a closer view and also offers a slider in the modal to
+          explore other images.
         </Text>
       </Grid>
       <Grid xs={12} md={6}>
@@ -26,10 +26,13 @@ export default function ImageGalleryMasonryExample() {
           </Table.Header>
           <Table.Body>
             <Table.Row key="1">
-              <Table.Cell>imageUrl</Table.Cell>
-              <Table.Cell>string</Table.Cell>
-              <Table.Cell>https://picsum.photos/1280/720?random</Table.Cell>
-              <Table.Cell>URL for the image to zoom in.</Table.Cell>
+              <Table.Cell>imagesUrl</Table.Cell>
+              <Table.Cell>Array</Table.Cell>
+              <Table.Cell>8 random Picsum photos</Table.Cell>
+              <Table.Cell>
+                URLs for the images to zoom in. Structure below:
+                <p>{'[{ img: "...", alt: "...", figcaption: "..." }]'}</p>
+              </Table.Cell>
             </Table.Row>
             <Table.Row key="2">
               <Table.Cell>animation</Table.Cell>
@@ -38,18 +41,12 @@ export default function ImageGalleryMasonryExample() {
               <Table.Cell>Animation to open modal with the image.</Table.Cell>
             </Table.Row>
             <Table.Row key="3">
-              <Table.Cell>alt</Table.Cell>
-              <Table.Cell>string</Table.Cell>
-              <Table.Cell>empty</Table.Cell>
-              <Table.Cell>Alt text for the image.</Table.Cell>
-            </Table.Row>
-            <Table.Row key="4">
               <Table.Cell>isRounded</Table.Cell>
               <Table.Cell>boolean</Table.Cell>
               <Table.Cell>false</Table.Cell>
               <Table.Cell>Add little rounded corners.</Table.Cell>
             </Table.Row>
-            <Table.Row key="5">
+            <Table.Row key="4">
               <Table.Cell>isCircled</Table.Cell>
               <Table.Cell>boolean</Table.Cell>
               <Table.Cell>false</Table.Cell>
@@ -62,16 +59,46 @@ export default function ImageGalleryMasonryExample() {
               <Table.Cell>Add a little shadow to the image.</Table.Cell>
             </Table.Row>
             <Table.Row key="6">
-              <Table.Cell>figcaption</Table.Cell>
-              <Table.Cell>string</Table.Cell>
-              <Table.Cell>empty</Table.Cell>
-              <Table.Cell>Add figcaption text to image, it is visible only when you open the image.</Table.Cell>
+              <Table.Cell>squared</Table.Cell>
+              <Table.Cell>boolean</Table.Cell>
+              <Table.Cell>false</Table.Cell>
+              <Table.Cell>All images are squared.</Table.Cell>
             </Table.Row>
             <Table.Row key="7">
+              <Table.Cell>space</Table.Cell>
+              <Table.Cell>string</Table.Cell>
+              <Table.Cell>20px</Table.Cell>
+              <Table.Cell>Gap space for each column, you can use px, rem, em, etc.</Table.Cell>
+            </Table.Row>
+            <Table.Row key="8">
+              <Table.Cell>columns</Table.Cell>
+              <Table.Cell>number</Table.Cell>
+              <Table.Cell>4</Table.Cell>
+              <Table.Cell>Quantity of columns on desktop.</Table.Cell>
+            </Table.Row>
+            <Table.Row key="9">
+              <Table.Cell>mdColumns</Table.Cell>
+              <Table.Cell>number</Table.Cell>
+              <Table.Cell>3</Table.Cell>
+              <Table.Cell>Quantity of columns on tablet.</Table.Cell>
+            </Table.Row>
+            <Table.Row key="10">
+              <Table.Cell>xsColumns</Table.Cell>
+              <Table.Cell>number</Table.Cell>
+              <Table.Cell>2</Table.Cell>
+              <Table.Cell>Quantity of columns on mobile.</Table.Cell>
+            </Table.Row>
+            <Table.Row key="11">
               <Table.Cell>bgBackdropClose</Table.Cell>
               <Table.Cell>boolean</Table.Cell>
               <Table.Cell>false</Table.Cell>
               <Table.Cell>You can close the image modal by clicking the background.</Table.Cell>
+            </Table.Row>
+            <Table.Row key="12">
+              <Table.Cell>figcaption</Table.Cell>
+              <Table.Cell>boolean</Table.Cell>
+              <Table.Cell>false</Table.Cell>
+              <Table.Cell>Display the figcaption of the images in the pretty box.</Table.Cell>
             </Table.Row>
           </Table.Body>
         </Table>
