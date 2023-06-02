@@ -32,6 +32,15 @@ export default function HomePage() {
           </Card.Body>
         </Link>
       </Card>
+      <Card>
+        <Link to="/product-gallery">
+          <Card.Body>
+            <Text color="primary" h4 className="mb-0">
+              Product gallery
+            </Text>
+          </Card.Body>
+        </Link>
+      </Card>
     </div>
   );
 }
