@@ -35,6 +35,7 @@ export default function Navbar() {
         <CustomNavLink to="/single-image">Single image</CustomNavLink>
         <CustomNavLink to="/image-gallery">Image gallery</CustomNavLink>
         <CustomNavLink to="/image-gallery-masonry">Image gallery masonry</CustomNavLink>
+        <CustomNavLink to="/product-gallery">Product gallery</CustomNavLink>
       </Nav.Content>
       <Nav.Collapse>
         <Nav.CollapseItem>
@@ -44,10 +45,13 @@ export default function Navbar() {
           <Link to="/single-image">Single image</Link>
         </Nav.CollapseItem>
         <Nav.CollapseItem>
-          <Link to="/image-gallery">Single image</Link>
+          <Link to="/image-gallery">Image gallery</Link>
         </Nav.CollapseItem>
         <Nav.CollapseItem>
-          <Link to="/image-gallery-masonry">Single image</Link>
+          <Link to="/image-gallery-masonry">Image gallery masonry</Link>
+        </Nav.CollapseItem>
+        <Nav.CollapseItem>
+          <Link to="/product-gallery">Product gallery</Link>
         </Nav.CollapseItem>
       </Nav.Collapse>
     </Nav>
