@@ -100,7 +100,7 @@ export default function ImageGalleryMasonry({
                         src={image.img}
                         alt={image.alt}
                         loading="lazy"
-                        className={`${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}
+                        className={`image ${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}
                       />
                       {figcaption && <figcaption>{image.figcaption}</figcaption>}
                     </motion.figure>
@@ -114,13 +114,12 @@ export default function ImageGalleryMasonry({
         .image-gallery-masonry-wrap {
           gap: ${space};
           columns: ${columns};
-          .image-gallery-masonry {
-            &:not(:last-child) {
-              margin-bottom: ${space};
-            }
-          }
         }
         
+        .image-gallery-masonry-wrap .image-gallery-masonry:not(:last-child) {
+            margin-bottom: ${space};
+        }
+
         @media only screen and (max-width: 989px) {
           .image-gallery-masonry-wrap {
             columns: ${mdColumns};

@@ -28,10 +28,7 @@
   .single-image-pretty-box {
     padding: 1rem;
     .single-image {
-      display: block;
       height: fit-content;
-      top: 50%;
-      transform: translateY(-50%);
       figcaption {
         width: max(10%, 90%);
         margin: 0 auto;

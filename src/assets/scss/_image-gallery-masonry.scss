@@ -1,6 +1,7 @@
 .image-gallery-masonry-wrap {
   .image-gallery-masonry {
     cursor: zoom-in;
+    margin: 0;
     .image {
       object-fit: cover;
       object-position: center;
@@ -23,10 +24,8 @@
   .image-gallery-prettybox {
     padding: 1rem;
     .image-gallery {
-      display: block;
       height: fit-content;
-      top: 50%;
-      transform: translateY(-50%);
+      margin: 0;
       figcaption {
         width: 90%;
         margin: 0 auto;
