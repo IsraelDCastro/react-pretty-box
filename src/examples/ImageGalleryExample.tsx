@@ -1,107 +1,107 @@
 import React from "react";
-import { Grid, Table, Text } from "@nextui-org/react";
+import { Table, TableRow, TableBody, TableHeader, TableColumn, TableCell } from "@nextui-org/react";
 import ImageGallery from "@/components/imageGallery";
 
 export default function ImageGalleryExample() {
   return (
-    <Grid.Container gap={2} alignItems="flex-start">
-      <Grid xs={12} direction="column">
-        <Text h3>Image gallery</Text>
-        <Text>
+    <div>
+      <div>
+        <h3>Image gallery</h3>
+        <p>
           The image gallery component allows you to zoom in on an image for a closer view and also provides a slider in the modal to browse
           through other images.
-        </Text>
-      </Grid>
-      <Grid xs={12} md={6}>
+        </p>
+      </div>
+      <div>
         <ImageGallery isRounded />
-      </Grid>
-      <Grid xs={12} md={6}>
-        <Table lined striped headerLined className="bg-white w-full">
-          <Table.Header>
-            <Table.Column>Props</Table.Column>
-            <Table.Column>Type</Table.Column>
-            <Table.Column>Default</Table.Column>
-            <Table.Column>Note</Table.Column>
-          </Table.Header>
-          <Table.Body>
-            <Table.Row key="1">
-              <Table.Cell>imagesUrl</Table.Cell>
-              <Table.Cell>Array</Table.Cell>
-              <Table.Cell>8 random Picsum photos</Table.Cell>
-              <Table.Cell>
+      </div>
+      <div>
+        <Table>
+          <TableHeader>
+            <TableColumn>Props</TableColumn>
+            <TableColumn>Type</TableColumn>
+            <TableColumn>Default</TableColumn>
+            <TableColumn>Note</TableColumn>
+          </TableHeader>
+          <TableBody>
+            <TableRow key="1">
+              <TableCell>imagesUrl</TableCell>
+              <TableCell>Array</TableCell>
+              <TableCell>8 random Picsum photos</TableCell>
+              <TableCell>
                 URLs for the images to zoom in. Structure below:
-                <p>{"[{ img: \"...\", alt: \"...\", figcaption: \"...\" }]"}</p>
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row key="2">
-              <Table.Cell>animation</Table.Cell>
-              <Table.Cell>string</Table.Cell>
-              <Table.Cell>fadeIn</Table.Cell>
-              <Table.Cell>Animation to open modal with the image.</Table.Cell>
-            </Table.Row>
-            <Table.Row key="3">
-              <Table.Cell>isRounded</Table.Cell>
-              <Table.Cell>boolean</Table.Cell>
-              <Table.Cell>false</Table.Cell>
-              <Table.Cell>Add little rounded corners.</Table.Cell>
-            </Table.Row>
-            <Table.Row key="4">
-              <Table.Cell>isCircled</Table.Cell>
-              <Table.Cell>boolean</Table.Cell>
-              <Table.Cell>false</Table.Cell>
-              <Table.Cell>Make a circle with the image, it works better with a square image.</Table.Cell>
-            </Table.Row>
-            <Table.Row key="5">
-              <Table.Cell>hasShadow</Table.Cell>
-              <Table.Cell>boolean</Table.Cell>
-              <Table.Cell>false</Table.Cell>
-              <Table.Cell>Add a little shadow to the image.</Table.Cell>
-            </Table.Row>
-            <Table.Row key="6">
-              <Table.Cell>squared</Table.Cell>
-              <Table.Cell>boolean</Table.Cell>
-              <Table.Cell>false</Table.Cell>
-              <Table.Cell>All images are squared.</Table.Cell>
-            </Table.Row>
-            <Table.Row key="7">
-              <Table.Cell>space</Table.Cell>
-              <Table.Cell>string</Table.Cell>
-              <Table.Cell>20px</Table.Cell>
-              <Table.Cell>Gap space for each column, you can use px, rem, em, etc.</Table.Cell>
-            </Table.Row>
-            <Table.Row key="8">
-              <Table.Cell>columns</Table.Cell>
-              <Table.Cell>number</Table.Cell>
-              <Table.Cell>4</Table.Cell>
-              <Table.Cell>Quantity of columns on desktop.</Table.Cell>
-            </Table.Row>
-            <Table.Row key="9">
-              <Table.Cell>mdColumns</Table.Cell>
-              <Table.Cell>number</Table.Cell>
-              <Table.Cell>3</Table.Cell>
-              <Table.Cell>Quantity of columns on tablet.</Table.Cell>
-            </Table.Row>
-            <Table.Row key="10">
-              <Table.Cell>xsColumns</Table.Cell>
-              <Table.Cell>number</Table.Cell>
-              <Table.Cell>2</Table.Cell>
-              <Table.Cell>Quantity of columns on mobile.</Table.Cell>
-            </Table.Row>
-            <Table.Row key="11">
-              <Table.Cell>bgBackdropClose</Table.Cell>
-              <Table.Cell>boolean</Table.Cell>
-              <Table.Cell>false</Table.Cell>
-              <Table.Cell>You can close the image modal by clicking the background.</Table.Cell>
-            </Table.Row>
-            <Table.Row key="12">
-              <Table.Cell>figcaption</Table.Cell>
-              <Table.Cell>boolean</Table.Cell>
-              <Table.Cell>false</Table.Cell>
-              <Table.Cell>Display the figcaption of the images in the pretty box.</Table.Cell>
-            </Table.Row>
-          </Table.Body>
+                <p>{'[{ img: "...", alt: "...", figcaption: "..." }]'}</p>
+              </TableCell>
+            </TableRow>
+            <TableRow key="2">
+              <TableCell>animation</TableCell>
+              <TableCell>string</TableCell>
+              <TableCell>fadeIn</TableCell>
+              <TableCell>Animation to open modal with the image.</TableCell>
+            </TableRow>
+            <TableRow key="3">
+              <TableCell>isRounded</TableCell>
+              <TableCell>boolean</TableCell>
+              <TableCell>false</TableCell>
+              <TableCell>Add little rounded corners.</TableCell>
+            </TableRow>
+            <TableRow key="4">
+              <TableCell>isCircled</TableCell>
+              <TableCell>boolean</TableCell>
+              <TableCell>false</TableCell>
+              <TableCell>Make a circle with the image, it works better with a square image.</TableCell>
+            </TableRow>
+            <TableRow key="5">
+              <TableCell>hasShadow</TableCell>
+              <TableCell>boolean</TableCell>
+              <TableCell>false</TableCell>
+              <TableCell>Add a little shadow to the image.</TableCell>
+            </TableRow>
+            <TableRow key="6">
+              <TableCell>squared</TableCell>
+              <TableCell>boolean</TableCell>
+              <TableCell>false</TableCell>
+              <TableCell>All images are squared.</TableCell>
+            </TableRow>
+            <TableRow key="7">
+              <TableCell>space</TableCell>
+              <TableCell>string</TableCell>
+              <TableCell>20px</TableCell>
+              <TableCell>Gap space for each column, you can use px, rem, em, etc.</TableCell>
+            </TableRow>
+            <TableRow key="8">
+              <TableCell>columns</TableCell>
+              <TableCell>number</TableCell>
+              <TableCell>4</TableCell>
+              <TableCell>Quantity of columns on desktop.</TableCell>
+            </TableRow>
+            <TableRow key="9">
+              <TableCell>mdColumns</TableCell>
+              <TableCell>number</TableCell>
+              <TableCell>3</TableCell>
+              <TableCell>Quantity of columns on tablet.</TableCell>
+            </TableRow>
+            <TableRow key="10">
+              <TableCell>xsColumns</TableCell>
+              <TableCell>number</TableCell>
+              <TableCell>2</TableCell>
+              <TableCell>Quantity of columns on mobile.</TableCell>
+            </TableRow>
+            <TableRow key="11">
+              <TableCell>bgBackdropClose</TableCell>
+              <TableCell>boolean</TableCell>
+              <TableCell>false</TableCell>
+              <TableCell>You can close the image modal by clicking the background.</TableCell>
+            </TableRow>
+            <TableRow key="12">
+              <TableCell>figcaption</TableCell>
+              <TableCell>boolean</TableCell>
+              <TableCell>false</TableCell>
+              <TableCell>Display the figcaption of the images in the pretty box.</TableCell>
+            </TableRow>
+          </TableBody>
         </Table>
-      </Grid>
-    </Grid.Container>
+      </div>
+    </div>
   );
 }

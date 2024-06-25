@@ -5,6 +5,7 @@ import Layout from "@/layouts/layout";
 import ImageGalleryPage from "@/pages/imageGalleryPage";
 import ImageGalleryMasonryPage from "@/pages/imageGalleryMasonryPage";
 import ProductGalleryPage from "@/pages/productGalleryPage";
+import ImageCarouselGalleryPage from "@/pages/imageCarouselGalleryPage";
 
 const routes = [
   {
@@ -26,6 +27,10 @@ const routes = [
       {
         path: "/product-gallery",
         element: <ProductGalleryPage />
+      },
+      {
+        path: "/image-carousel-gallery",
+        element: <ImageCarouselGalleryPage />
       }
     ]
   }
