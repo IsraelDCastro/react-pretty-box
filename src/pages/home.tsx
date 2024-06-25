@@ -1,45 +1,37 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, Text } from "@nextui-org/react";
+import { Button, Card, CardBody } from "@nextui-org/react";
 
 export default function HomePage() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
       <Card>
-        <Link to="/single-image">
-          <Card.Body>
-            <Text color="primary" h4 className="mb-0">
-              Single image
-            </Text>
-          </Card.Body>
-        </Link>
+        <CardBody>
+          <Link to="/single-image" className="text-primary">
+            <h4 className="text-lg font-semibold m-0">Single image</h4>
+          </Link>
+        </CardBody>
       </Card>
       <Card>
-        <Link to="/image-gallery">
-          <Card.Body>
-            <Text color="primary" h4 className="mb-0">
-              Image gallery
-            </Text>
-          </Card.Body>
-        </Link>
+        <CardBody>
+          <Link to="/image-gallery" className="text-primary">
+            <h4 className="text-lg font-semibold m-0">Image gallery</h4>
+          </Link>
+        </CardBody>
       </Card>
       <Card>
-        <Link to="/image-gallery-masonry">
-          <Card.Body>
-            <Text color="primary" h4 className="mb-0">
-              Image gallery masonry
-            </Text>
-          </Card.Body>
-        </Link>
+        <CardBody>
+          <Link to="/image-gallery-masonry" className="text-primary">
+            <h4 className="text-lg font-semibold m-0">Image gallery masonry</h4>
+          </Link>
+        </CardBody>
       </Card>
       <Card>
-        <Link to="/product-gallery">
-          <Card.Body>
-            <Text color="primary" h4 className="mb-0">
-              Product gallery
-            </Text>
-          </Card.Body>
-        </Link>
+        <CardBody>
+          <Link to="/product-gallery" className="text-primary">
+            <h4 className="text-lg font-semibold m-0">Product gallery</h4>
+          </Link>
+        </CardBody>
       </Card>
     </div>
   );

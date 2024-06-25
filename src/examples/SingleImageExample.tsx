@@ -1,77 +1,83 @@
 import React from "react";
-import { Grid, Table, Text } from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
 import SingleImage from "@/components/singleImage";
 
 export default function SingleImageExample() {
   return (
-    <Grid.Container gap={2} alignItems="flex-start">
-      <Grid xs={12} direction="column">
-        <Text h3>Single image</Text>
-        <Text>With this component, you can zoom in on an image to see it up close and view it in better detail.</Text>
-      </Grid>
-      <Grid xs={12} md={6}>
-        <SingleImage isRounded hasShadow imageUrl="https://picsum.photos/1280/720?random=1" />
-      </Grid>
-      <Grid xs={12} md={6}>
-        <Table lined striped headerLined className="bg-white w-full">
-          <Table.Header>
-            <Table.Column>Props</Table.Column>
-            <Table.Column>Type</Table.Column>
-            <Table.Column>Default</Table.Column>
-            <Table.Column>Note</Table.Column>
-          </Table.Header>
-          <Table.Body>
-            <Table.Row key="1">
-              <Table.Cell>imageUrl</Table.Cell>
-              <Table.Cell>string</Table.Cell>
-              <Table.Cell>https://picsum.photos/1280/720?random</Table.Cell>
-              <Table.Cell>URL for the image to zoom in.</Table.Cell>
-            </Table.Row>
-            <Table.Row key="2">
-              <Table.Cell>animation</Table.Cell>
-              <Table.Cell>string</Table.Cell>
-              <Table.Cell>fadeIn</Table.Cell>
-              <Table.Cell>Animation to open modal with the image.</Table.Cell>
-            </Table.Row>
-            <Table.Row key="3">
-              <Table.Cell>alt</Table.Cell>
-              <Table.Cell>string</Table.Cell>
-              <Table.Cell>empty</Table.Cell>
-              <Table.Cell>Alt text for the image.</Table.Cell>
-            </Table.Row>
-            <Table.Row key="4">
-              <Table.Cell>isRounded</Table.Cell>
-              <Table.Cell>boolean</Table.Cell>
-              <Table.Cell>false</Table.Cell>
-              <Table.Cell>Add little rounded corners.</Table.Cell>
-            </Table.Row>
-            <Table.Row key="5">
-              <Table.Cell>isCircled</Table.Cell>
-              <Table.Cell>boolean</Table.Cell>
-              <Table.Cell>false</Table.Cell>
-              <Table.Cell>Make a circle with the image, it works better with a square image.</Table.Cell>
-            </Table.Row>
-            <Table.Row key="5">
-              <Table.Cell>hasShadow</Table.Cell>
-              <Table.Cell>boolean</Table.Cell>
-              <Table.Cell>false</Table.Cell>
-              <Table.Cell>Add a little shadow to the image.</Table.Cell>
-            </Table.Row>
-            <Table.Row key="6">
-              <Table.Cell>figcaption</Table.Cell>
-              <Table.Cell>string</Table.Cell>
-              <Table.Cell>empty</Table.Cell>
-              <Table.Cell>Add figcaption text to image, it is visible only when you open the image.</Table.Cell>
-            </Table.Row>
-            <Table.Row key="7">
-              <Table.Cell>bgBackdropClose</Table.Cell>
-              <Table.Cell>boolean</Table.Cell>
-              <Table.Cell>false</Table.Cell>
-              <Table.Cell>You can close the image modal by clicking the background.</Table.Cell>
-            </Table.Row>
-          </Table.Body>
+    <div className="grid gap-8">
+      <div className="flex flex-col">
+        <h3 className="text-2xl font-bold">Single image</h3>
+        <p>With this component, you can zoom in on an image to see it up close and view it in better detail.</p>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <SingleImage bgBackdropClose isRounded hasShadow imageUrl="https://picsum.photos/1280/720?random=1" />
+        </div>
+        <Table
+          aria-label="Example table with dynamic content"
+          classNames={{
+            base: "bg-white w-full",
+            th: "bg-gray-100"
+          }}
+        >
+          <TableHeader>
+            <TableColumn>Props</TableColumn>
+            <TableColumn>Type</TableColumn>
+            <TableColumn>Default</TableColumn>
+            <TableColumn>Note</TableColumn>
+          </TableHeader>
+          <TableBody>
+            <TableRow key="1">
+              <TableCell>imageUrl</TableCell>
+              <TableCell>string</TableCell>
+              <TableCell>https://picsum.photos/1280/720?random</TableCell>
+              <TableCell>URL for the image to zoom in.</TableCell>
+            </TableRow>
+            <TableRow key="2">
+              <TableCell>animation</TableCell>
+              <TableCell>string</TableCell>
+              <TableCell>fadeIn</TableCell>
+              <TableCell>Animation to open modal with the image.</TableCell>
+            </TableRow>
+            <TableRow key="3">
+              <TableCell>alt</TableCell>
+              <TableCell>string</TableCell>
+              <TableCell>empty</TableCell>
+              <TableCell>Alt text for the image.</TableCell>
+            </TableRow>
+            <TableRow key="4">
+              <TableCell>isRounded</TableCell>
+              <TableCell>boolean</TableCell>
+              <TableCell>false</TableCell>
+              <TableCell>Add little rounded corners.</TableCell>
+            </TableRow>
+            <TableRow key="5">
+              <TableCell>isCircled</TableCell>
+              <TableCell>boolean</TableCell>
+              <TableCell>false</TableCell>
+              <TableCell>Make a circle with the image, it works better with a square image.</TableCell>
+            </TableRow>
+            <TableRow key="6">
+              <TableCell>hasShadow</TableCell>
+              <TableCell>boolean</TableCell>
+              <TableCell>false</TableCell>
+              <TableCell>Add a little shadow to the image.</TableCell>
+            </TableRow>
+            <TableRow key="7">
+              <TableCell>figcaption</TableCell>
+              <TableCell>string</TableCell>
+              <TableCell>empty</TableCell>
+              <TableCell>Add figcaption text to image, it is visible only when you open the image.</TableCell>
+            </TableRow>
+            <TableRow key="8">
+              <TableCell>bgBackdropClose</TableCell>
+              <TableCell>boolean</TableCell>
+              <TableCell>false</TableCell>
+              <TableCell>You can close the image modal by clicking the background.</TableCell>
+            </TableRow>
+          </TableBody>
         </Table>
-      </Grid>
-    </Grid.Container>
+      </div>
+    </div>
   );
 }

@@ -1,0 +1,76 @@
+.carousel-gallery-container {
+  position: relative;
+  overflow: hidden;
+  .carousel-gallery-wrap {
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+
+    .carousel-item {
+      cursor: zoom-in;
+      margin: 0;
+    }
+    .image {
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+      height: 100%;
+      &.is-circled {
+        border-radius: 50%;
+      }
+      &.is-rounded {
+        border-radius: 0.3125rem;
+      }
+      &.has-shadow {
+        box-shadow: $base-shadow;
+      }
+    }
+    &.squared {
+      > .carousel-item {
+        aspect-ratio: 1;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+    }
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      box-shadow: #bbb;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba($secondary-color-300, 0.5);
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: rgba($secondary-color-500, 0.75);
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .image-gallery-prettybox {
+    padding: 1rem;
+    .image-gallery {
+      display: block;
+      height: fit-content;
+      top: 50%;
+      transform: translateY(-50%);
+      figcaption {
+        width: 90%;
+        margin: 0 auto;
+      }
+    }
+  }
+}

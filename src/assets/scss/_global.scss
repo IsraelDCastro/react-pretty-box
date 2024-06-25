@@ -3,8 +3,8 @@
 .product-gallery-pretty-box {
   position: fixed;
   z-index: 2000;
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: auto;
   top: 0;
   left: 0;
   bottom: 0;
@@ -12,8 +12,9 @@
   padding: 1rem 4.615rem;
   display: flex;
   justify-content: center;
+  align-items: center;
   overflow: hidden;
-
+  font: optional;
   .single-image {
     cursor: auto;
     z-index: 30;
@@ -124,5 +125,15 @@ img {
   .right-button {
     top: auto;
     bottom: 5%;
+  }
+
+  .single-image-pretty-box,
+  .image-gallery-pretty-box,
+  .product-gallery-pretty-box {
+    padding: 1.25rem;
+    .single-image {
+      margin: .5rem;
+      height: fit-content;
+    }
   }
 }

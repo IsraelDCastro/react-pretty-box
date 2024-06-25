@@ -37,25 +37,21 @@ export default defineConfig({
   },
   build: {
     cssCodeSplit: true,
-    cssMinify: true,
     lib: {
       entry: "src/components/index.ts",
-      name: "react-pretty-box",
       formats: ["es", "umd"],
+      name: "react-pretty-box",
       fileName: (format: string) => `react-pretty-box.${format}.js`
     },
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, "src/components/main.ts")
       },
-      plugins: [terser()],
       external: ["react"],
       output: {
         exports: "named",
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === "main.css") {
-            return "react-pretty-box.css";
-          }
+          if (assetInfo.name === "main.css") return "react-pretty-box.css";
           return assetInfo.name;
         },
         globals: {

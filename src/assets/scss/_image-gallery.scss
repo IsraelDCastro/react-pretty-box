@@ -2,6 +2,7 @@
   display: grid;
   .image-gallery {
     cursor: zoom-in;
+    margin: 0;
     .image {
       object-fit: cover;
       object-position: center;

@@ -1,5 +1,5 @@
 import { RouterProvider } from "react-router-dom";
-import routes from "@/router";
+import routes from "./router";
 
 import "@/assets/react-pretty-box.scss";
 import "@/assets/docs.scss";

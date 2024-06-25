@@ -106,7 +106,7 @@ export default function ProductGallery({
                         src={image.img}
                         alt={image.alt}
                         loading="lazy"
-                        className={`${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}
+                        className={`image ${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}
                       />
                       {figcaption && <figcaption>{image.figcaption}</figcaption>}
                     </motion.figure>

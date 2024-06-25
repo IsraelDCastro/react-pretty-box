@@ -1,12 +1,8 @@
 {
   "name": "react-pretty-box",
-  "private": true,
-  "version": "0.0.1-beta.1",
+  "version": "1.0.1",
   "type": "module",
-  "files": [
-    "dist",
-    "main.d.ts"
-  ],
+  "files": ["dist", "main.d.ts"],
   "main": "./dist/react-pretty-box.umd.js",
   "module": "./dist/react-pretty-box.es.js",
   "exports": {
@@ -22,6 +18,9 @@
       "import": "./dist/react-pretty-box.scss",
       "require": "./dist/react-pretty-box.scss"
     }
+  },
+  "browser": {
+    ".": "./dist/react-pretty-box.es.js"
   },
   "types": "./dist/components/main.d.ts",
   "description": "React-Pretty-Box is a ReactJS 18 library that enhances image viewing in web applications. It enables zoom functionality for single images or galleries, allowing users to explore visuals in greater detail. With intuitive controls like pinch-to-zoom and panning, users can easily navigate and examine enlarged images. ",
@@ -52,49 +51,49 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/IsraelDCastro/vue-pretty-box-project/issues"
+    "url": "https://github.com/IsraelDCastro/react-pretty-box/issues"
   },
-  "homepage": "https://vue-pretty-box.netlify.app/",
+  "homepage": "https://...",
   "repository": {
     "type": "git",
-    "url": "https://github.com/IsraelDCastro/vue-pretty-box-project"
+    "url": "https://github.com/IsraelDCastro/react-pretty-box"
   },
   "dependencies": {
-    "@nextui-org/react": "^1.0.0-beta.12",
-    "@rollup/plugin-terser": "^0.4.1",
-    "@vitejs/plugin-react": "^3.1.0",
-    "framer-motion": "^10.11.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.10.0",
-    "rollup-plugin-typescript2": "^0.34.1",
-    "vite": "^4.2.1",
-    "vite-plugin-dts": "^2.2.0",
-    "vite-plugin-static-copy": "^0.13.1"
+    "@nextui-org/react": "^2.4.2",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@vitejs/plugin-react": "^4.3.1",
+    "framer-motion": "^11.2.11",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.0",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "vite": "^5.3.1",
+    "vite-plugin-dts": "^3.9.1",
+    "vite-plugin-static-copy": "^1.0.5"
   },
   "devDependencies": {
-    "@types/node": "^18.15.11",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.58.0",
-    "@typescript-eslint/parser": "^5.58.0",
-    "autoprefixer": "^10.4.14",
-    "bootstrap-icons": "^1.10.4",
-    "eslint": "^8.38.0",
+    "@types/node": "^20.14.8",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.14.1",
+    "autoprefixer": "^10.4.19",
+    "bootstrap-icons": "^1.11.3",
+    "eslint": "^9.5.0",
     "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-alias": "^1.1.2",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.9.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.34.3",
+    "eslint-plugin-react-hooks": "^4.6.2",
     "path": "^0.12.7",
-    "postcss": "^8.4.21",
-    "prettier": "^2.8.7",
-    "sass": "^1.61.0",
-    "tailwindcss": "^3.3.1",
-    "terser": "^5.16.9",
-    "typescript": "^4.9.3"
+    "postcss": "^8.4.38",
+    "prettier": "^3.3.2",
+    "sass": "^1.77.6",
+    "tailwindcss": "^3.4.4",
+    "terser": "^5.31.1",
+    "typescript": "^5.5.2"
   }
 }

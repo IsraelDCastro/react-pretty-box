@@ -102,7 +102,7 @@ export default function ImageGallery({
                         src={image.img}
                         alt={image.alt}
                         loading="lazy"
-                        className={`${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}
+                        className={`image ${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}
                       />
                       {figcaption && <figcaption>{image.figcaption}</figcaption>}
                     </motion.figure>
@@ -116,19 +116,14 @@ export default function ImageGallery({
         .image-gallery-wrap {
           gap: ${space};
           grid-template-columns: repeat(${columns}, 1fr);
-          .image-gallery {
-            &:not(:last-child) {
-              margin-bottom: v-bind(space);
-            }
-          }
         }
-        
+
         @media only screen and (max-width: 989px) {
           .image-gallery-wrap {
             grid-template-columns: repeat(${mdColumns}, 1fr);
           }
         }
-        
+
         @media only screen and (max-width: 575px) {
           .image-gallery-wrap {
             grid-template-columns: repeat(${xsColumns}, 1fr);
