@@ -5,6 +5,8 @@ import typescript2 from "rollup-plugin-typescript2";
 import dts from "vite-plugin-dts";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import terser from "@rollup/plugin-terser";
+import { visualizer } from "rollup-plugin-visualizer";
+import analyze from "rollup-plugin-analyzer";
 
 export default defineConfig({
   plugins: [
@@ -14,7 +16,7 @@ export default defineConfig({
     }),
     typescript2({
       check: false,
-      include: ["src/components/**/*.tsx"],
+      include: ["src/components/**/*"],
       tsconfigOverride: {
         compilerOptions: {
           outDir: "dist",
@@ -23,14 +25,20 @@ export default defineConfig({
           declarationMap: true
         }
       },
-      exclude: ["vite.config.ts"]
+      exclude: ["vite.config.ts", "src/pages", "src/router", "src/layouts", "src/examples"],
+      tsconfig: "tsconfig.json"
     }),
     viteStaticCopy({
       targets: [
         { src: "src/assets/react-pretty-box.scss", dest: "" },
         { src: "src/assets/scss", dest: "" }
       ]
-    })
+    }),
+    visualizer({
+      filename: "stats.html",
+      open: true
+    }),
+    analyze({ summaryOnly: true })
   ],
   server: {
     open: true
@@ -38,16 +46,16 @@ export default defineConfig({
   build: {
     cssCodeSplit: true,
     lib: {
-      entry: "src/components/index.ts",
-      formats: ["es", "umd"],
-      name: "react-pretty-box",
-      fileName: (format: string) => `react-pretty-box.${format}.js`
+      entry: path.resolve(__dirname, "src/components/index.ts"),
+      name: "reactPrettyBox",
+      fileName: (format) => `react-pretty-box.${format}.js`
     },
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, "src/components/main.ts")
       },
-      external: ["react"],
+      plugins: [terser()],
+      external: ["React"],
       output: {
         exports: "named",
         assetFileNames: (assetInfo) => {
@@ -64,7 +72,7 @@ export default defineConfig({
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".jsx", ".tsx"], // .map((ext) => `.${ext}`).filter((ext) => ext !== ".jsx"),
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@": path.resolve(__dirname, "src"),
       "@/components": path.resolve(__dirname, "src/components"),
       "@/assets": path.resolve(__dirname, "src/assets"),
       "@/pages": path.resolve(__dirname, "src/pages")
