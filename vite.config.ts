@@ -16,7 +16,7 @@ export default defineConfig({
     }),
     typescript2({
       check: false,
-      include: ["src/components/**/*"],
+      include: ["src/components/**/*.tsx", "src/components/**/*.ts"],
       tsconfigOverride: {
         compilerOptions: {
           outDir: "dist",
@@ -45,9 +45,11 @@ export default defineConfig({
   },
   build: {
     cssCodeSplit: true,
+    cssMinify: true,
     lib: {
       entry: path.resolve(__dirname, "src/components/index.ts"),
       name: "reactPrettyBox",
+      formats: ["es", "umd"],
       fileName: (format) => `react-pretty-box.${format}.js`
     },
     rollupOptions: {
@@ -55,7 +57,7 @@ export default defineConfig({
         main: path.resolve(__dirname, "src/components/main.ts")
       },
       plugins: [terser()],
-      external: ["React"],
+      external: ["react"],
       output: {
         exports: "named",
         assetFileNames: (assetInfo) => {

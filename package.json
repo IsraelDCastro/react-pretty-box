@@ -1,6 +1,6 @@
 {
   "name": "react-pretty-box",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "files": ["dist", "main.d.ts"],
   "main": "./dist/react-pretty-box.umd.js",
@@ -95,7 +95,7 @@
     "terser": "^5.31.1",
     "typescript": "^5.5.2",
     "vite": "^5.3.1",
-    "vite-plugin-dts": "^3.9.1",
+    "vite-plugin-dts": "2.3.0",
     "vite-plugin-static-copy": "^1.0.5"
   }
 }
