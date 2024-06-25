@@ -115,7 +115,7 @@ export default function ImageGalleryMasonry({
           gap: ${space};
           columns: ${columns};
         }
-        
+
         .image-gallery-masonry-wrap .image-gallery-masonry:not(:last-child) {
             margin-bottom: ${space};
         }
@@ -125,7 +125,7 @@ export default function ImageGalleryMasonry({
             columns: ${mdColumns};
           }
         }
-        
+
         @media only screen and (max-width: 575px) {
           .image-gallery-masonry-wrap {
             columns: ${xsColumns};

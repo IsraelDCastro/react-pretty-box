@@ -1,12 +1,8 @@
 {
   "name": "react-pretty-box",
-  "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
-  "files": [
-    "dist",
-    "main.d.ts"
-  ],
+  "files": ["dist", "main.d.ts"],
   "main": "./dist/react-pretty-box.umd.js",
   "module": "./dist/react-pretty-box.es.js",
   "exports": {
@@ -22,6 +18,9 @@
       "import": "./dist/react-pretty-box.scss",
       "require": "./dist/react-pretty-box.scss"
     }
+  },
+  "browser": {
+    ".": "./dist/react-pretty-box.es.js"
   },
   "types": "./dist/components/main.d.ts",
   "description": "React-Pretty-Box is a ReactJS 18 library that enhances image viewing in web applications. It enables zoom functionality for single images or galleries, allowing users to explore visuals in greater detail. With intuitive controls like pinch-to-zoom and panning, users can easily navigate and examine enlarged images. ",
@@ -52,12 +51,12 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/IsraelDCastro/vue-pretty-box-project/issues"
+    "url": "https://github.com/IsraelDCastro/react-pretty-box/issues"
   },
-  "homepage": "https://vue-pretty-box.netlify.app/",
+  "homepage": "https://...",
   "repository": {
     "type": "git",
-    "url": "https://github.com/IsraelDCastro/vue-pretty-box-project"
+    "url": "https://github.com/IsraelDCastro/react-pretty-box"
   },
   "dependencies": {
     "@nextui-org/react": "^2.4.2",
