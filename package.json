@@ -1,8 +1,11 @@
 {
   "name": "react-pretty-box",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
-  "files": ["dist", "main.d.ts"],
+  "files": [
+    "dist",
+    "main.d.ts"
+  ],
   "main": "./dist/react-pretty-box.umd.js",
   "module": "./dist/react-pretty-box.es.js",
   "exports": {
