@@ -1,44 +1,58 @@
 .product-gallery-wrap {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+
   .image {
     width: 100%;
+    object-fit: cover;
+    object-position: center;
+    height: 100%;
+
     &.is-circled {
       border-radius: 50%;
     }
+
     &.is-rounded {
       border-radius: 0.3125rem;
     }
+
     &.has-shadow {
       box-shadow: $base-shadow;
     }
   }
+
   .main-product-gallery {
     cursor: zoom-in;
     margin: 0;
+
     .image {
       width: 100%;
     }
+
     &:first-child {
       grid-column: span 4;
     }
   }
+
   .carousel-product-image {
     display: flex;
     height: fit-content;
     grid-column: span 4 / span 4;
     overflow-x: auto;
     scroll-snap-type: x proximity;
+
     .product-gallery {
       cursor: zoom-in;
       margin: 0;
       width: 6rem;
       flex-shrink: 0;
       scroll-snap-align: start;
+
       &:not(:first-child) {
         margin-left: 1rem;
       }
     }
+
     .carousel-item {
       cursor: zoom-in;
       width: 100%;
@@ -46,7 +60,7 @@
       object-position: center;
       object-fit: cover;
     }
-    
+
 
     &::-webkit-scrollbar {
       height: 4px;
@@ -69,19 +83,25 @@
       background-color: rgba($secondary-color-500, .75);
     }
   }
+
   &.is-vertical {
     @apply flex h-96 overflow-hidden;
+
     .main-product-gallery {
       @apply w-9/12 h-96;
+
       img {
         @apply object-cover object-center w-full h-full;
       }
     }
+
     .carousel-product-image {
       @apply h-96 w-3/12 flex flex-col snap-y space-x-0 space-y-4 scroll-smooth snap-start overflow-y-auto;
+
       .product-gallery {
         @apply w-full;
       }
+
       &::-webkit-scrollbar {
         @apply w-1 rounded-md;
       }

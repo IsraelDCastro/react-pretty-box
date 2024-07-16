@@ -92,7 +92,7 @@ export default function ImageGallery({
                   currentImage === index && (
                     <motion.figure
                       key={index}
-                      variants={slideItem}
+                      variants={getAnimation(animation)}
                       initial="initial"
                       animate="animate"
                       exit="exit"
