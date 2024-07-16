@@ -127,7 +127,7 @@ export default function ImageCarouselGallery({
             <AnimatePresence mode="wait">
               <motion.figure
                 key={currentImage}
-                variants={slideItem}
+                variants={getAnimation(animation)}
                 initial="initial"
                 animate="animate"
                 exit="exit"

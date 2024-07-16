@@ -15,12 +15,14 @@
   align-items: center;
   overflow: hidden;
   font: optional;
+
   .single-image {
     cursor: auto;
     z-index: 30;
     display: flex;
     justify-content: center;
     position: relative;
+
     figcaption {
       font-size: .875rem;
       position: absolute;
@@ -68,10 +70,12 @@ img {
   transition: all .3s ease-in-out;
   border: 0;
   cursor: pointer;
+
   svg {
     width: 2rem;
     height: 2rem;
   }
+
   &:hover {
     background-color: $close-color;
   }
@@ -92,11 +96,14 @@ img {
   transition: all .3s ease-in-out;
   border: 0;
   cursor: pointer;
+
   &:hover {
     background-color: $secondary-color-600;
   }
+
   &[disabled] {
     cursor: not-allowed;
+
     &:hover {
       background-color: rgb(0 0 0 / 15%);
     }
@@ -104,11 +111,13 @@ img {
 }
 
 .left-button {
+  transform: translateY(-50%);
   top: 50%;
   left: 2%;
 }
 
 .right-button {
+  transform: translateY(-50%);
   top: 50%;
   right: 2%;
 }
@@ -121,6 +130,7 @@ img {
     right: auto;
     transform: translateX(-50%);
   }
+
   .left-button,
   .right-button {
     top: auto;
@@ -131,6 +141,7 @@ img {
   .image-gallery-pretty-box,
   .product-gallery-pretty-box {
     padding: 1.25rem;
+
     .single-image {
       margin: .5rem;
       height: fit-content;
