@@ -14,7 +14,7 @@ export default function ProductGalleryExample() {
 			</div>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 				<div>
-					<ProductGallery isRounded />
+					<ProductGallery imagesUrl={[]} isRounded />
 				</div>
 				<Table
 					aria-label="Example table with dynamic content"
