@@ -7,21 +7,21 @@ import { CloseIcon, NextIcon, PrevIcon } from "@/components/shared/icons";
 import ErrorMessage from "./shared/errorMessage";
 
 interface ProductGalleryProps extends DefaultBoxProps {
-	imagesUrl?: { img: string; alt: string; figcaption: string }[];
+	imagesUrl?: { url: string; alt: string; figcaption: string }[];
 	space?: string;
 	isVertical?: boolean;
 }
 
 export default function ProductGallery({
 	imagesUrl = [
-		{ img: "https://picsum.photos/1280/720?random=1", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/1280/720?random=2", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/1280/720?random=3", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/1280/720?random=4", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/1280/720?random=5", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/1280/720?random=6", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/1280/720?random=7", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/1280/720?random=8", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" }
+		{ url: "https://picsum.photos/1280/720?random=1", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/1280/720?random=2", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/1280/720?random=3", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/1280/720?random=4", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/1280/720?random=5", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/1280/720?random=6", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/1280/720?random=7", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/1280/720?random=8", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" }
 	],
 	space = "10px",
 	isRounded,
@@ -49,7 +49,7 @@ export default function ProductGallery({
 					<div className={`product-gallery-wrap ${isVertical ? "is-vertical" : ""}`}>
 						<figure className="main-product-gallery" onClick={() => openCloseProductGalleryBox(0)}>
 							<img
-								src={imagesUrl[0]?.img}
+								src={imagesUrl[0]?.url}
 								alt={imagesUrl[0]?.alt}
 								className={`image ${isRounded ? "is-rounded" : ""} ${isCircled ? "is-circled" : ""} ${hasShadow ? "has-shadow" : ""}`}
 								loading="lazy"
@@ -59,7 +59,7 @@ export default function ProductGallery({
 							{imagesUrl.map((image, index) => (
 								<figure key={index} className="product-gallery" onClick={() => openCloseProductGalleryBox(index)}>
 									<img
-										src={image?.img}
+										src={image?.url}
 										alt={image?.alt}
 										className={`image ${isRounded ? "is-rounded" : ""} ${isCircled ? "is-circled" : ""} ${hasShadow ? "has-shadow" : ""}`}
 										loading="lazy"
@@ -106,7 +106,7 @@ export default function ProductGallery({
 													className={`single-image ${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}
 												>
 													<img
-														src={image?.img}
+														src={image?.url}
 														alt={image?.alt}
 														loading="lazy"
 														className={`image ${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}

@@ -7,7 +7,7 @@ import { CloseIcon, NextIcon, PrevIcon } from "@/components/shared/icons";
 import ErrorMessage from "./shared/errorMessage";
 
 interface ImageGalleryProps extends DefaultBoxProps {
-	imagesUrl?: { img: string; alt: string; figcaption: string }[];
+	imagesUrl?: { url: string; alt: string; figcaption: string }[];
 	squared?: boolean;
 	columns?: number;
 	mdColumns?: number;
@@ -17,14 +17,14 @@ interface ImageGalleryProps extends DefaultBoxProps {
 
 export default function ImageGallery({
 	imagesUrl = [
-		{ img: "https://picsum.photos/1280/720?random=1", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/1280/720?random=2", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/1280/720?random=3", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/1280/720?random=4", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/1280/720?random=5", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/1280/720?random=6", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/1280/720?random=7", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/1280/720?random=8", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" }
+		{ url: "https://picsum.photos/1280/720?random=1", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/1280/720?random=2", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/1280/720?random=3", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/1280/720?random=4", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/1280/720?random=5", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/1280/720?random=6", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/1280/720?random=7", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/1280/720?random=8", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" }
 	],
 	squared = false,
 	columns = 4,
@@ -56,7 +56,7 @@ export default function ImageGallery({
 						{imagesUrl.map((image, index) => (
 							<figure key={index} className="image-gallery" onClick={() => openCloseImageGalleryBox(index)}>
 								<img
-									src={image.img}
+									src={image.url}
 									alt={image.alt}
 									className={`image ${isRounded ? "is-rounded" : ""} ${isCircled ? "is-circled" : ""} ${hasShadow ? "has-shadow" : ""}`}
 									loading="lazy"
@@ -102,7 +102,7 @@ export default function ImageGallery({
 													className={`single-image ${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}
 												>
 													<img
-														src={image.img}
+														src={image.url}
 														alt={image.alt}
 														loading="lazy"
 														className={`image ${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}
