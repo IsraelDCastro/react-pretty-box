@@ -26,7 +26,7 @@ function CustomNavLink({ to = "/", children }: CustomNavLinkProps) {
 
 	return (
 		<NavbarItem isActive={route.pathname === to}>
-			<NextUILink color="foreground" onClick={changeRoute}>
+			<NextUILink className="cursor-pointer" color="foreground" onClick={changeRoute}>
 				{children}
 			</NextUILink>
 		</NavbarItem>
@@ -37,14 +37,14 @@ export default function NavbarComponent() {
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
 	return (
-		<Navbar onMenuOpenChange={setIsMenuOpen}>
-			<NavbarContent>
-				<NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} className="sm:hidden" />
-				<NavbarBrand>
-					<p className="font-bold text-inherit">React Pretty Box</p>
-				</NavbarBrand>
+		<Navbar maxWidth="full" isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
+			<NavbarContent className="sm:hidden" justify="start">
+				<NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
 			</NavbarContent>
 
+			<NavbarBrand>
+				<p className="font-bold text-inherit">React Pretty Box</p>
+			</NavbarBrand>
 			<NavbarContent className="hidden sm:flex gap-4" justify="center">
 				<CustomNavLink to="/">Home</CustomNavLink>
 				<CustomNavLink to="/single-image">Single image</CustomNavLink>
@@ -55,7 +55,7 @@ export default function NavbarComponent() {
 				<CustomNavLink to="/mosaic-gallery">Mosaic gallery</CustomNavLink>
 			</NavbarContent>
 
-			<NavbarMenu>
+			<NavbarMenu className="hidden">
 				<NavbarMenuItem>
 					<Link to="/">Home</Link>
 				</NavbarMenuItem>
