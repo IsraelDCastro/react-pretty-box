@@ -2,28 +2,28 @@ import React, { useState } from "react";
 import { DefaultBoxProps } from "@/components/shared/interfaces";
 import { AnimatePresence, motion } from "framer-motion";
 import { getAnimation } from "@/components/shared";
-import { slideItem } from "@/components/shared/animations";
 import { CloseIcon, NextIcon, PrevIcon } from "@/components/shared/icons";
 import ErrorMessage from "./shared/errorMessage";
 
 interface ImageGalleryProps extends DefaultBoxProps {
-	imagesUrl?: { img: string; alt: string; figcaption: string }[];
+	imagesUrl?: { url: string; alt: string; figcaption: string }[];
 	columns?: number;
 	mdColumns?: number;
 	xsColumns?: number;
 	space?: string;
+	figcaption?: boolean;
 }
 
 export default function ImageGalleryMasonry({
 	imagesUrl = [
-		{ img: "https://picsum.photos/1280/720?random=1", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/720/1280?random=2", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/720/720?random=3", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/1280/720?random=4", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/720/720?random=5", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/720/1280?random=6", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/1280/720?random=7", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
-		{ img: "https://picsum.photos/720/1280?random=8", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" }
+		{ url: "https://picsum.photos/1280/720?random=1", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/720/1280?random=2", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/720/720?random=3", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/1280/720?random=4", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/720/720?random=5", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/720/1280?random=6", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/1280/720?random=7", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
+		{ url: "https://picsum.photos/720/1280?random=8", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" }
 	],
 	columns = 4,
 	mdColumns = 3,
@@ -54,7 +54,7 @@ export default function ImageGalleryMasonry({
 						{imagesUrl.map((image, index) => (
 							<figure key={index} className="image-gallery-masonry" onClick={() => openCloseImageGalleryBox(index)}>
 								<img
-									src={image.img}
+									src={image.url}
 									alt={image.alt}
 									className={`image ${isRounded ? "is-rounded" : ""} ${isCircled ? "is-circled" : ""} ${hasShadow ? "has-shadow" : ""}`}
 									loading="lazy"
@@ -100,7 +100,7 @@ export default function ImageGalleryMasonry({
 													className={`single-image ${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}
 												>
 													<img
-														src={image.img}
+														src={image.url}
 														alt={image.alt}
 														loading="lazy"
 														className={`image ${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}

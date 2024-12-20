@@ -3,7 +3,7 @@ type AnimationOpts = "fadeIn" | "fadeInDown" | "fadeInUp" | "fadeInRight" | "fad
 export interface DefaultBoxProps {
   animation?: AnimationOpts;
   alt?: string;
-  figcaption?: string;
+  figcaption?: string | boolean;
   isRounded?: boolean;
   isCircled?: boolean;
   hasShadow?: boolean;

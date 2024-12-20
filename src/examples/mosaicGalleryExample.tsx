@@ -1,19 +1,19 @@
 import React from "react";
 import { Table, TableRow, TableBody, TableHeader, TableColumn, TableCell } from "@nextui-org/react";
-import ImageGallery from "@/components/imageGallery";
+import { MosaicGallery } from "@/components";
 
-export default function ImageGalleryExample() {
+export default function MosaicGalleryExample() {
 	return (
 		<div>
 			<div>
-				<h3>Image gallery</h3>
+				<h3>Mosaic gallery</h3>
 				<p>
-					The image gallery component allows you to zoom in on an image for a closer view and also provides a slider in the modal to browse
-					through other images.
+					The image carousel gallery component displays images in a scrollable horizontal format. Clicking an image opens a modal for a
+					larger view, allowing navigation between images. It combines carousel scrolling with modal viewing functionality.
 				</p>
 			</div>
 			<div>
-				<ImageGallery isRounded />
+				<MosaicGallery isRounded />
 			</div>
 			<Table
 				aria-label="Example table with dynamic content"
@@ -77,24 +77,6 @@ export default function ImageGalleryExample() {
 						<TableCell>string</TableCell>
 						<TableCell>20px</TableCell>
 						<TableCell>Gap space for each column, you can use px, rem, em, etc.</TableCell>
-					</TableRow>
-					<TableRow key="8">
-						<TableCell>columns</TableCell>
-						<TableCell>number</TableCell>
-						<TableCell>4</TableCell>
-						<TableCell>Quantity of columns on desktop.</TableCell>
-					</TableRow>
-					<TableRow key="9">
-						<TableCell>mdColumns</TableCell>
-						<TableCell>number</TableCell>
-						<TableCell>3</TableCell>
-						<TableCell>Quantity of columns on tablet.</TableCell>
-					</TableRow>
-					<TableRow key="10">
-						<TableCell>xsColumns</TableCell>
-						<TableCell>number</TableCell>
-						<TableCell>2</TableCell>
-						<TableCell>Quantity of columns on mobile.</TableCell>
 					</TableRow>
 					<TableRow key="11">
 						<TableCell>bgBackdropClose</TableCell>

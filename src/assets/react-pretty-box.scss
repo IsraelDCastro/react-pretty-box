@@ -1,7 +1,8 @@
-@import "scss/variables";
-@import "scss/global";
-@import "scss/single-image";
-@import "scss/image-gallery";
-@import "scss/image-gallery-masonry";
-@import "scss/product-gallery";
-@import "scss/image-carousel-gallery";
+@use "scss/_variables.scss" as *;
+@use "scss/_global.scss";
+@use "scss/_single-image.scss";
+@use "scss/_image-gallery.scss";
+@use "scss/_image-gallery-masonry.scss";
+@use "scss/_product-gallery.scss";
+@use "scss/_image-carousel-gallery.scss";
+@use "scss/_mosaic-gallery.scss";

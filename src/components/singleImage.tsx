@@ -7,6 +7,7 @@ import ErrorMessage from "./shared/errorMessage";
 
 interface SingleImageProps extends DefaultBoxProps {
 	imageUrl: string;
+	figcaption?: string;
 }
 export default function SingleImage({
 	imageUrl = "https://picsum.photos/1280/720?random",

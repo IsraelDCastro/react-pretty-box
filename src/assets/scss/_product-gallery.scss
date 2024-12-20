@@ -1,3 +1,5 @@
+@use "variables";
+
 .product-gallery-wrap {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -17,7 +19,7 @@
     }
 
     &.has-shadow {
-      box-shadow: $base-shadow;
+      box-shadow: variables.$base-shadow;
     }
   }
 
@@ -74,13 +76,13 @@
 
     /* Handle */
     &::-webkit-scrollbar-thumb {
-      background-color: rgba($secondary-color-300, .50);
+      background-color: rgba(variables.$secondary-color-300, .50);
       border-radius: 10px;
     }
 
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
-      background-color: rgba($secondary-color-500, .75);
+      background-color: rgba(variables.$secondary-color-500, .75);
     }
   }
 
@@ -111,12 +113,12 @@
       }
 
       &::-webkit-scrollbar-thumb {
-        background-color: rgba($secondary-color-300, .50);
+        background-color: rgba(variables.$secondary-color-300, .50);
         @apply rounded-xl transition-all duration-300 ease-in-out;
       }
 
       &::-webkit-scrollbar-thumb:hover {
-        background-color: rgba($secondary-color-500, .50);
+        background-color: rgba(variables.$secondary-color-500, .50);
       }
     }
   }

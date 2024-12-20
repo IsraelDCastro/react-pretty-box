@@ -15,10 +15,14 @@ export default function SingleImageExample() {
 				</div>
 				<Table
 					aria-label="Example table with dynamic content"
+					shadow="none"
+					radius="sm"
 					classNames={{
-						base: "bg-white w-full",
-						th: "bg-gray-100"
+						wrapper: "p-2",
+						table: "bg-transparent !border-0",
+						thead: "*:!m-0"
 					}}
+					isStriped
 				>
 					<TableHeader>
 						<TableColumn>Props</TableColumn>
