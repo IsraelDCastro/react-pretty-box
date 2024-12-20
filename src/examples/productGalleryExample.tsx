@@ -14,14 +14,18 @@ export default function ProductGalleryExample() {
 			</div>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 				<div>
-					<ProductGallery imagesUrl={[]} isRounded />
+					<ProductGallery isRounded />
 				</div>
 				<Table
 					aria-label="Example table with dynamic content"
+					shadow="none"
+					radius="sm"
 					classNames={{
-						base: "bg-white w-full",
-						th: "bg-gray-100"
+						wrapper: "p-2",
+						table: "bg-transparent !border-0",
+						thead: "*:!m-0"
 					}}
+					isStriped
 				>
 					<TableHeader>
 						<TableColumn>Props</TableColumn>

@@ -1,3 +1,5 @@
+@use "variables";
+
 .single-image {
   cursor: zoom-in;
   display: block;
@@ -21,7 +23,7 @@
     border-radius: 0.3125rem;
   }
   &.has-shadow {
-    box-shadow: $base-shadow;
+    box-shadow: variables.$base-shadow;
   }
 }
 

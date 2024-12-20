@@ -1,3 +1,3 @@
-import { SingleImage, ImageGallery, ImageGalleryMansory, ProductGallery, ImageCarouselGallery } from "./index";
+import { SingleImage, ImageGallery, ImageGalleryMansory, ProductGallery, ImageCarouselGallery, MosaicGallery } from "./index";
 
-export { SingleImage, ImageGallery, ImageGalleryMansory, ProductGallery, ImageCarouselGallery };
+export { SingleImage, ImageGallery, ImageGalleryMansory, ProductGallery, ImageCarouselGallery, MosaicGallery };

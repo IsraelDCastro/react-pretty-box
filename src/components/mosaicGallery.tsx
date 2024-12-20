@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { DefaultBoxProps } from "@/components/shared/interfaces";
 import { AnimatePresence, motion } from "framer-motion";
 import { getAnimation } from "@/components/shared";
 import { CloseIcon, NextIcon, PrevIcon } from "@/components/shared/icons";
 import ErrorMessage from "./shared/errorMessage";
 
-interface ImageGalleryProps extends DefaultBoxProps {
+interface MosaicGalleryProps extends DefaultBoxProps {
 	imagesUrl?: { url: string; alt: string; figcaption: string }[];
 	squared?: boolean;
 	columns?: number;
@@ -15,7 +15,7 @@ interface ImageGalleryProps extends DefaultBoxProps {
 	figcaption?: boolean;
 }
 
-export default function ImageGallery({
+export default function MosaicGallery({
 	imagesUrl = [
 		{ url: "https://picsum.photos/1280/720?random=1", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
 		{ url: "https://picsum.photos/1280/720?random=2", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" },
@@ -27,9 +27,6 @@ export default function ImageGallery({
 		{ url: "https://picsum.photos/1280/720?random=8", alt: "Lorem ipsum", figcaption: "Lorem ipsum dolor sit amet" }
 	],
 	squared = false,
-	columns = 4,
-	mdColumns = 3,
-	xsColumns = 2,
 	space = "20px",
 	isRounded,
 	isCircled,
@@ -37,7 +34,7 @@ export default function ImageGallery({
 	hasShadow,
 	bgBackdropClose,
 	figcaption
-}: ImageGalleryProps) {
+}: MosaicGalleryProps) {
 	const [imageGalleryBox, setImageGalleryBox] = useState(false);
 	const imageGalleryToggle = () => setImageGalleryBox(!imageGalleryBox);
 	const [currentImage, setCurrentImage] = useState(0);
@@ -52,9 +49,9 @@ export default function ImageGallery({
 		<>
 			{Array.isArray(imagesUrl) && imagesUrl[0] ? (
 				<>
-					<div className={`image-gallery-wrap ${squared ? "squared" : ""}`}>
-						{imagesUrl.map((image, index) => (
-							<figure key={index} className="image-gallery" onClick={() => openCloseImageGalleryBox(index)}>
+					<div className={`mosaic-gallery-wrap ${squared ? "squared" : ""}`}>
+						{imagesUrl.slice(0, 4).map((image, index) => (
+							<figure key={index} className="mosaic-gallery" onClick={() => openCloseImageGalleryBox(index)}>
 								<img
 									src={image.url}
 									alt={image.alt}
@@ -63,6 +60,7 @@ export default function ImageGallery({
 								/>
 							</figure>
 						))}
+						{imagesUrl.slice(4).length >= 1 && <span role="button" onClick={() => openCloseImageGalleryBox(4)} className="more-images">More images +{imagesUrl.slice(4).length}</span>}
 					</div>
 					<AnimatePresence>
 						{imageGalleryBox && (
@@ -71,7 +69,7 @@ export default function ImageGallery({
 								initial="initial"
 								animate="animate"
 								exit="exit"
-								className="image-gallery-pretty-box"
+								className="mosaic-gallery-pretty-box"
 							>
 								<div
 									aria-label="Open image"
@@ -116,21 +114,8 @@ export default function ImageGallery({
 						)}
 					</AnimatePresence>
 					<style>{`
-		        .image-gallery-wrap {
+		        .mosaic-gallery-wrap {
 		          gap: ${space};
-		          grid-template-columns: repeat(${columns}, 1fr);
-		        }
-
-		        @media only screen and (max-width: 989px) {
-		          .image-gallery-wrap {
-		            grid-template-columns: repeat(${mdColumns}, 1fr);
-		          }
-		        }
-
-		        @media only screen and (max-width: 575px) {
-		          .image-gallery-wrap {
-		            grid-template-columns: repeat(${xsColumns}, 1fr);
-		          }
 		        }
 		      `}</style>
 				</>

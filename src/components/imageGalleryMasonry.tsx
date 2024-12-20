@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { DefaultBoxProps } from "@/components/shared/interfaces";
 import { AnimatePresence, motion } from "framer-motion";
 import { getAnimation } from "@/components/shared";
-import { slideItem } from "@/components/shared/animations";
 import { CloseIcon, NextIcon, PrevIcon } from "@/components/shared/icons";
 import ErrorMessage from "./shared/errorMessage";
 
@@ -12,6 +11,7 @@ interface ImageGalleryProps extends DefaultBoxProps {
 	mdColumns?: number;
 	xsColumns?: number;
 	space?: string;
+	figcaption?: boolean;
 }
 
 export default function ImageGalleryMasonry({
