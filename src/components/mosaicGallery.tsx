@@ -8,12 +8,12 @@ import ErrorMessage from "./shared/errorMessage";
 interface MosaicGalleryProps extends DefaultBoxProps {
 	imagesUrl?: { url: string; alt: string; figcaption: string }[];
 	squared?: boolean;
-	columns?: number;
-	mdColumns?: number;
-	xsColumns?: number;
 	space?: string;
 	figcaption?: boolean;
+	quantity?: number;
 }
+
+
 
 export default function MosaicGallery({
 	imagesUrl = [
@@ -31,9 +31,18 @@ export default function MosaicGallery({
 	isRounded,
 	isCircled,
 	animation = "fadeIn",
+	quantity = 4,
 	hasShadow,
 	bgBackdropClose,
-	figcaption
+	figcaption,
+	classNames = {
+		wrapper: "",
+		image: "",
+		imageWrapper: "",
+		preNextBtn: "",
+		closeBtn: "",
+		moreBtn: ""
+	}
 }: MosaicGalleryProps) {
 	const [imageGalleryBox, setImageGalleryBox] = useState(false);
 	const imageGalleryToggle = () => setImageGalleryBox(!imageGalleryBox);
@@ -49,18 +58,18 @@ export default function MosaicGallery({
 		<>
 			{Array.isArray(imagesUrl) && imagesUrl[0] ? (
 				<>
-					<div className={`mosaic-gallery-wrap ${squared ? "squared" : ""}`}>
-						{imagesUrl.slice(0, 4).map((image, index) => (
-							<figure key={index} className="mosaic-gallery" onClick={() => openCloseImageGalleryBox(index)}>
+					<div className={`mosaic-gallery-wrap ${classNames?.wrapper} ${squared ? "squared" : ""}`}>
+						{imagesUrl.slice(0, quantity).map((image, index) => (
+							<figure key={index} className={`${classNames?.imageWrapper} mosaic-gallery`} onClick={() => openCloseImageGalleryBox(index)}>
 								<img
 									src={image.url}
 									alt={image.alt}
-									className={`image ${isRounded ? "is-rounded" : ""} ${isCircled ? "is-circled" : ""} ${hasShadow ? "has-shadow" : ""}`}
+									className={`image ${classNames?.image} ${isRounded ? "is-rounded" : ""} ${isCircled ? "is-circled" : ""} ${hasShadow ? "has-shadow" : ""}`}
 									loading="lazy"
 								/>
 							</figure>
 						))}
-						{imagesUrl.slice(4).length >= 1 && <span role="button" onClick={() => openCloseImageGalleryBox(4)} className="more-images">More images +{imagesUrl.slice(4).length}</span>}
+						{imagesUrl.slice(quantity).length >= 1 && <span role="button" onClick={() => openCloseImageGalleryBox(4)} className="more-images">More images +{imagesUrl.slice(4).length}</span>}
 					</div>
 					<AnimatePresence>
 						{imageGalleryBox && (
@@ -78,13 +87,13 @@ export default function MosaicGallery({
 									className="bg-backdrop"
 									onClick={bgBackdropClose ? imageGalleryToggle : () => ({})}
 								/>
-								<button onClick={imageGalleryToggle} className="close-button" type="button">
+								<button onClick={imageGalleryToggle} className={`close-button ${classNames?.closeBtn}`} type="button">
 									<CloseIcon />
 								</button>
-								<button type="button" disabled={currentImage === 0} onClick={prev} className="left-button">
+								<button type="button" disabled={currentImage === 0} onClick={prev} className={`${classNames?.preNextBtn} left-button`}>
 									<PrevIcon />
 								</button>
-								<button type="button" disabled={currentImage === imagesUrl.length - 1} onClick={next} className="right-button">
+								<button type="button" disabled={currentImage === imagesUrl.length - 1} onClick={next} className={`${classNames?.preNextBtn} right-button`}>
 									<NextIcon />
 								</button>
 								<AnimatePresence mode="wait">
@@ -113,6 +122,7 @@ export default function MosaicGallery({
 							</motion.div>
 						)}
 					</AnimatePresence>
+					{/* grid-template-columns: repeat(${columns	}, minmax(0, 1fr)); */}
 					<style>{`
 		        .mosaic-gallery-wrap {
 		          gap: ${space};

@@ -7,6 +7,7 @@ import ImageGalleryMasonryPage from "@/pages/imageGalleryMasonryPage";
 import ProductGalleryPage from "@/pages/productGalleryPage";
 import ImageCarouselGalleryPage from "@/pages/imageCarouselGalleryPage";
 import MosaicGalleryPage from "@/pages/mosaicGalleryPage";
+import SliderGalleryPage from "@/pages/mosaicGalleryPage";
 
 const routes = [
 	{
@@ -36,6 +37,10 @@ const routes = [
 			{
 				path: "/mosaic-gallery",
 				element: <MosaicGalleryPage />
+			},
+			{
+				path: "/slider-gallery",
+				element: <SliderGalleryPage />
 			}
 		]
 	}

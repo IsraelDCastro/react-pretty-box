@@ -53,6 +53,7 @@ export default function NavbarComponent() {
 				<CustomNavLink to="/product-gallery">Product gallery</CustomNavLink>
 				<CustomNavLink to="/image-carousel-gallery">Image carousel gallery</CustomNavLink>
 				<CustomNavLink to="/mosaic-gallery">Mosaic gallery</CustomNavLink>
+				<CustomNavLink to="/slider-gallery">Slider gallery</CustomNavLink>
 			</NavbarContent>
 
 			<NavbarMenu className="hidden">
