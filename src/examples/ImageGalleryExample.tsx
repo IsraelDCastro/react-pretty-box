@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, TableRow, TableBody, TableHeader, TableColumn, TableCell } from "@nextui-org/react";
+import { Table, TableRow, TableBody, TableHeader, TableColumn, TableCell } from "@heroui/react";
 import ImageGallery from "@/components/imageGallery";
 
 export default function ImageGalleryExample() {

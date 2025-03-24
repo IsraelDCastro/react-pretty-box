@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, TableRow, TableBody, TableHeader, TableColumn, TableCell } from "@nextui-org/react";
+import { Table, TableRow, TableBody, TableHeader, TableColumn, TableCell } from "@heroui/react";
 import { SliderGallery } from "@/components";
 
 export default function SliderGalleryExample() {
