@@ -8,7 +8,7 @@ import {
 	NavbarMenu,
 	NavbarMenuItem,
 	Link as NextUILink
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 interface CustomNavLinkProps {
