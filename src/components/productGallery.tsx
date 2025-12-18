@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { DefaultBoxProps } from "@/components/shared/interfaces";
 import { AnimatePresence, motion } from "framer-motion";
-import { getAnimation } from "@/components/shared";
+import { getAnimation, useDialogAccessibility } from "@/components/shared";
 import { CloseIcon, NextIcon, PrevIcon } from "@/components/shared/icons";
 import ErrorMessage from "./shared/errorMessage";
 
@@ -32,35 +32,82 @@ export default function ProductGallery({
 	figcaption,
 	isVertical
 }: ProductGalleryProps) {
-	const [productGalleryBox, setProductGalleryBox] = useState(false);
-	const productGalleryToggle = () => setProductGalleryBox(!productGalleryBox);
-	const [currentImage, setCurrentImage] = useState(0);
-	const prev = () => setCurrentImage(currentImage - 1);
-	const next = () => setCurrentImage(currentImage + 1);
-	const openCloseProductGalleryBox = (indexPosition?: number) => {
-		setProductGalleryBox(!productGalleryBox);
-		setCurrentImage(indexPosition || 0);
-	};
+	const [isOpen, setIsOpen] = useState(false);
+	const [currentIndex, setCurrentIndex] = useState(0);
+
+	const openGalleryAt = useCallback((index: number) => {
+		setCurrentIndex(index);
+		setIsOpen(true);
+	}, []);
+
+	const closeGallery = useCallback(() => setIsOpen(false), []);
+
+	const goToPrevious = useCallback(() => {
+		setCurrentIndex((prev) => Math.max(prev - 1, 0));
+	}, []);
+
+	const goToNext = useCallback(() => {
+		setCurrentIndex((prev) => Math.min(prev + 1, Math.max(imagesUrl.length - 1, 0)));
+	}, [imagesUrl.length]);
+
+	const { dialogProps } = useDialogAccessibility({ isOpen, onClose: closeGallery, onPrevious: goToPrevious, onNext: goToNext });
+
+	const handleThumbnailKeyDown = useCallback(
+		(event: React.KeyboardEvent<HTMLElement>, index: number) => {
+			if (event.key === "Enter" || event.key === " ") {
+				event.preventDefault();
+				openGalleryAt(index);
+			}
+		},
+		[openGalleryAt]
+	);
+
+	const mainImage = useMemo(() => imagesUrl[0], [imagesUrl]);
+	const activeImage = useMemo(() => imagesUrl[currentIndex], [currentIndex, imagesUrl]);
+	const canGoPrevious = currentIndex > 0;
+	const canGoNext = currentIndex < imagesUrl.length - 1;
+	const figcaptionId = figcaption && activeImage ? `product-gallery-caption-${currentIndex}` : undefined;
 
 	return (
 		<>
-			{Array.isArray(imagesUrl) && imagesUrl[0] ? (
+			{Array.isArray(imagesUrl) && imagesUrl.length ? (
 				<>
 					<div className={`product-gallery-wrap ${isVertical ? "is-vertical" : ""}`}>
-						<figure className="main-product-gallery" onClick={() => openCloseProductGalleryBox(0)}>
-							<img
-								src={imagesUrl[0]?.url}
-								alt={imagesUrl[0]?.alt}
-								className={`image ${isRounded ? "is-rounded" : ""} ${isCircled ? "is-circled" : ""} ${hasShadow ? "has-shadow" : ""}`}
-								loading="lazy"
-							/>
-						</figure>
+						{mainImage && (
+							<figure
+								className="main-product-gallery"
+								role="button"
+								tabIndex={0}
+								aria-haspopup="dialog"
+								aria-expanded={isOpen && currentIndex === 0}
+								aria-label={mainImage.alt ? `Abrir visor para ${mainImage.alt}` : "Abrir visor de producto"}
+								onClick={() => openGalleryAt(0)}
+								onKeyDown={(event) => handleThumbnailKeyDown(event, 0)}
+							>
+								<img
+									src={mainImage.url}
+									alt={mainImage.alt}
+									className={`image ${isRounded ? "is-rounded" : ""} ${isCircled ? "is-circled" : ""} ${hasShadow ? "has-shadow" : ""}`}
+									loading="lazy"
+								/>
+							</figure>
+						)}
 						<div className="carousel-product-image">
 							{imagesUrl.map((image, index) => (
-								<figure key={index} className="product-gallery" onClick={() => openCloseProductGalleryBox(index)}>
+								<figure
+									key={index}
+									className="product-gallery"
+									role="button"
+									tabIndex={0}
+									aria-haspopup="dialog"
+									aria-expanded={isOpen && currentIndex === index}
+									aria-label={image.alt ? `Abrir visor para ${image.alt}` : `Abrir imagen ${index + 1}`}
+									onClick={() => openGalleryAt(index)}
+									onKeyDown={(event) => handleThumbnailKeyDown(event, index)}
+								>
 									<img
-										src={image?.url}
-										alt={image?.alt}
+										src={image.url}
+										alt={image.alt}
 										className={`image ${isRounded ? "is-rounded" : ""} ${isCircled ? "is-circled" : ""} ${hasShadow ? "has-shadow" : ""}`}
 										loading="lazy"
 									/>
@@ -69,70 +116,93 @@ export default function ProductGallery({
 						</div>
 					</div>
 					<AnimatePresence>
-						{productGalleryBox && (
+						{isOpen && activeImage && (
 							<motion.div
+								{...dialogProps}
 								variants={getAnimation(animation)}
 								initial="initial"
 								animate="animate"
 								exit="exit"
 								className="product-gallery-pretty-box"
+								aria-label="Visor de galería de producto"
+								aria-describedby={figcaptionId}
 							>
-								<div
-									aria-label="Open image"
-									tabIndex={-1}
-									role="button"
+								<button
+									type="button"
 									className="bg-backdrop"
-									onClick={bgBackdropClose ? productGalleryToggle : () => ({})}
+									aria-hidden="true"
+									tabIndex={-1}
+									onClick={bgBackdropClose ? closeGallery : undefined}
 								/>
-								<button onClick={productGalleryToggle} className="close-button" type="button">
+								<button
+									className="close-button"
+									type="button"
+									onClick={closeGallery}
+									aria-label="Cerrar visor de producto"
+								>
 									<CloseIcon />
 								</button>
-								<button type="button" disabled={currentImage === 0} onClick={prev} className="left-button">
+								<button
+									className="left-button"
+									type="button"
+									disabled={!canGoPrevious}
+									onClick={goToPrevious}
+									aria-label="Mostrar imagen anterior"
+								>
 									<PrevIcon />
 								</button>
-								<button type="button" disabled={currentImage === imagesUrl.length - 1} onClick={next} className="right-button">
+								<button
+									className="right-button"
+									type="button"
+									disabled={!canGoNext}
+									onClick={goToNext}
+									aria-label="Mostrar imagen siguiente"
+								>
 									<NextIcon />
 								</button>
 								<AnimatePresence mode="wait">
-									{imagesUrl.map(
-										(image, index) =>
-											currentImage === index && (
-												<motion.figure
-													key={index}
-													variants={getAnimation(animation)}
-													initial="initial"
-													animate="animate"
-													exit="exit"
-													className={`single-image ${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}
-												>
-													<img
-														src={image?.url}
-														alt={image?.alt}
-														loading="lazy"
-														className={`image ${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}
-													/>
-													{figcaption && <figcaption>{image?.figcaption}</figcaption>}
-												</motion.figure>
-											)
+									{activeImage && (
+										<motion.figure
+											key={`${activeImage.url}-${currentIndex}`}
+											variants={getAnimation(animation)}
+											initial="initial"
+											animate="animate"
+											exit="exit"
+											className={`single-image ${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}
+										>
+											<img
+												src={activeImage.url}
+												alt={activeImage.alt}
+												loading="lazy"
+												className={`image ${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}
+											/>
+											{figcaption && (
+												<figcaption id={figcaptionId} aria-live="polite" role="status">
+													{activeImage.figcaption}
+												</figcaption>
+											)}
+										</motion.figure>
 									)}
 								</AnimatePresence>
 							</motion.div>
 						)}
 					</AnimatePresence>
 					<style>{`
-		        .product-gallery-wrap {
-		          gap: ${space};
-		        }
-		      `}</style>
+	        .product-gallery-wrap {
+	          gap: ${space};
+	        }
+	      `}</style>
 				</>
-			) : <ErrorMessage
-				message="There are no images to display. This could be because the image list is empty or there was an error loading the images."
-				suggestions={[
-					"Check if you've provided a valid list of images to the component.",
-					"Ensure that all image URLs are correct and accessible.",
-					"If the problem persists, try refreshing the page or contact support."
-				]}
-			/>}
+			) : (
+				<ErrorMessage
+					message="There are no images to display. This could be because the image list is empty or there was an error loading the images."
+					suggestions={[
+						"Check if you've provided a valid list of images to the component.",
+						"Ensure that all image URLs are correct and accessible.",
+						"If the problem persists, try refreshing the page or contact support."
+					]}
+				/>
+			)}
 		</>
 	);
 }

@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@import "bootstrap-icons/font/bootstrap-icons.css";
+@plugin './hero.ts';
+@source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+
+@layer utilities {
+  @import "./docs/_global.css";
+}
+
+@theme {
+  /* Primary Colors */
+  --color-primary: #8b4ea2;
+  --color-primary-foreground: #ffffff;
+  --color-primary-50: #fbf8fc;
+  --color-primary-100: #f7f1fa;
+  --color-primary-200: #efd9f5;
+  --color-primary-300: #e0c7eb;
+  --color-primary-400: #c69fdb;
+  --color-primary-500: #a66abe;
+  --color-primary-600: #8b4ea2;
+  --color-primary-700: #703d85;
+  --color-primary-800: #562c68;
+  --color-primary-900: #3d1e4b;
+  --color-primary-950: #2a1434;
+
+  /* Secondary Colors */
+  --color-secondary: #1a6eaf;
+  --color-secondary-foreground: #ffffff;
+  --color-secondary-50: #f2f8fd;
+  --color-secondary-100: #e4effa;
+  --color-secondary-200: #c9e0f5;
+  --color-secondary-300: #9cc8ed;
+  --color-secondary-400: #5faee3;
+  --color-secondary-500: #3190d3;
+  --color-secondary-600: #1a6eaf;
+  --color-secondary-700: #155990;
+  --color-secondary-800: #144977;
+  --color-secondary-900: #153d62;
+  --color-secondary-950: #0e2848;
+
+  /* Tertiary Colors */
+  --color-tertiary: #ed7304;
+  --color-tertiary-foreground: #ffffff;
+  --color-tertiary-50: #fffaeb;
+  --color-tertiary-100: #fff0c6;
+  --color-tertiary-200: #ffe399;
+  --color-tertiary-300: #ffce5c;
+  --color-tertiary-400: #ffb835;
+  --color-tertiary-500: #f98f07;
+  --color-tertiary-600: #ed7304;
+  --color-tertiary-700: #c55506;
+  --color-tertiary-800: #9c420d;
+  --color-tertiary-900: #7e380f;
+  --color-tertiary-950: #461b05;
+
+  /* Font Families */
+  --font-sans: 'Nunito Sans', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-body: Raleway, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono';
+}
+
+@custom-variant dark (&:is(.dark *));

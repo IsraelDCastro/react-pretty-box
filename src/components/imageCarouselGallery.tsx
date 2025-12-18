@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { DefaultBoxProps } from "@/components/shared/interfaces";
 import { AnimatePresence, motion } from "framer-motion";
-import { getAnimation } from "@/components/shared";
+import { getAnimation, useDialogAccessibility } from "@/components/shared";
 import { CloseIcon, NextIcon, PrevIcon } from "@/components/shared/icons";
 import ErrorMessage from "./shared/errorMessage";
 
@@ -38,147 +38,218 @@ export default function ImageCarouselGallery({
 	bgBackdropClose,
 	figcaption
 }: ImageCarouselGalleryProps) {
-	const [currentImage, setCurrentImage] = useState(0);
-	const [imageCarouselGalleryBox, setImageCarouselGalleryBox] = useState(false);
+	const [currentIndex, setCurrentIndex] = useState(0);
+	const [isOpen, setIsOpen] = useState(false);
 	const carouselRef = useRef<HTMLDivElement>(null);
 
-	const scrollToImage = (index: number) => {
-		if (carouselRef.current) {
-			const scrollWidth = carouselRef.current.scrollWidth;
-			const itemWidth = scrollWidth / imagesUrl.length;
-			carouselRef.current.scrollTo({ left: itemWidth * index, behavior: "smooth" });
-		}
-	};
+	const totalImages = imagesUrl.length;
+	const hasImages = Array.isArray(imagesUrl) && totalImages > 0;
+	const activeImage = useMemo(() => imagesUrl[currentIndex], [currentIndex, imagesUrl]);
+	const canGoPrevious = currentIndex > 0;
+	const canGoNext = currentIndex < totalImages - 1;
+	const figcaptionId = figcaption && activeImage ? `image-carousel-caption-${currentIndex}` : undefined;
 
-	const handleScroll = () => {
-		if (carouselRef.current) {
-			const scrollPosition = carouselRef.current.scrollLeft;
-			const itemWidth = carouselRef.current.scrollWidth / imagesUrl.length;
-			const newIndex = Math.round(scrollPosition / itemWidth);
-			setCurrentImage(newIndex);
-		}
-	};
+	const scrollToImage = useCallback(
+		(index: number) => {
+			if (!carouselRef.current || totalImages === 0) return;
+			const targetIndex = Math.min(Math.max(index, 0), totalImages - 1);
+			const scrollWidth = carouselRef.current.scrollWidth;
+			const itemWidth = scrollWidth / totalImages;
+			carouselRef.current.scrollTo({ left: itemWidth * targetIndex, behavior: "smooth" });
+		},
+		[totalImages]
+	);
+
+	const handleScroll = useCallback(() => {
+		if (!carouselRef.current || totalImages === 0) return;
+		const scrollPosition = carouselRef.current.scrollLeft;
+		const itemWidth = carouselRef.current.scrollWidth / totalImages;
+		const newIndex = Math.round(scrollPosition / itemWidth);
+		setCurrentIndex(Math.min(Math.max(newIndex, 0), totalImages - 1));
+	}, [totalImages]);
 
 	useEffect(() => {
 		const carousel = carouselRef.current;
-		if (carousel) {
-			carousel.addEventListener("scroll", handleScroll);
-			return () => carousel.removeEventListener("scroll", handleScroll);
-		}
+		if (!carousel) return undefined;
+
+		carousel.addEventListener("scroll", handleScroll);
+		return () => carousel.removeEventListener("scroll", handleScroll);
+	}, [handleScroll]);
+
+	const openModalAt = useCallback((index: number) => {
+		setCurrentIndex(index);
+		setIsOpen(true);
 	}, []);
 
-	const openModal = (index: number) => {
-		setCurrentImage(index);
-		setImageCarouselGalleryBox(true);
-	};
+	const closeModal = useCallback(() => setIsOpen(false), []);
 
-	const closeModal = () => setImageCarouselGalleryBox(false);
+	const goToPrevious = useCallback(() => {
+		setCurrentIndex((prev) => Math.max(prev - 1, 0));
+	}, []);
 
-	const nextImage = () => setCurrentImage((prev) => (prev + 1) % imagesUrl.length);
-	const prevImage = () => setCurrentImage((prev) => (prev - 1 + imagesUrl.length) % imagesUrl.length);
+	const goToNext = useCallback(() => {
+		setCurrentIndex((prev) => Math.min(prev + 1, Math.max(totalImages - 1, 0)));
+	}, [totalImages]);
 
-	return (
-		<>
-			{Array.isArray(imagesUrl) && imagesUrl[0] ? (
-				<>
-					<motion.div variants={getAnimation(animation)} initial="initial" animate="animate" className="carousel-gallery-container">
-						<div className={`carousel-gallery-wrap ${squared ? "squared" : ""}`} ref={carouselRef}>
-							{imagesUrl.map((image, index) => (
-								<figure key={index} className="carousel-item" onClick={() => openModal(index)}>
-									<img
-										src={image.url}
-										alt={image.alt}
-										className={`image ${isRounded ? "is-rounded" : ""} ${isCircled ? "is-circled" : ""} ${hasShadow ? "has-shadow" : ""}`}
-										loading="lazy"
-									/>
-								</figure>
-							))}
-						</div>
-						<button type="button" onClick={() => scrollToImage(currentImage - 1)} className="left-button">
-							<PrevIcon />
-						</button>
-						<button type="button" onClick={() => scrollToImage(currentImage + 1)} className="right-button">
-							<NextIcon />
-						</button>
-					</motion.div>
+	const { dialogProps } = useDialogAccessibility({ isOpen, onClose: closeModal, onPrevious: goToPrevious, onNext: goToNext });
 
-					<AnimatePresence>
-						{imageCarouselGalleryBox && (
-							<motion.div
-								variants={getAnimation(animation)}
-								initial="initial"
-								animate="animate"
-								exit="exit"
-								className="image-gallery-pretty-box"
-							>
-								<div
-									aria-label="Open image"
-									tabIndex={-1}
-									role="button"
-									className="bg-backdrop"
-									onClick={bgBackdropClose ? closeModal : () => ({})}
-								/>
-								<button onClick={closeModal} className="close-button" type="button">
-									<CloseIcon />
-								</button>
-								<button type="button" onClick={prevImage} className="left-button">
-									<PrevIcon />
-								</button>
-								<button type="button" onClick={nextImage} className="right-button">
-									<NextIcon />
-								</button>
-								<AnimatePresence mode="wait">
-									<motion.figure
-										key={currentImage}
-										variants={getAnimation(animation)}
-										initial="initial"
-										animate="animate"
-										exit="exit"
-										className={`single-image ${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}
-									>
-										<img
-											src={imagesUrl[currentImage].url}
-											alt={imagesUrl[currentImage].alt}
-											loading="lazy"
-											className={`image ${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}
-										/>
-										{figcaption && <figcaption>{imagesUrl[currentImage].figcaption}</figcaption>}
-									</motion.figure>
-								</AnimatePresence>
-							</motion.div>
-						)}
-					</AnimatePresence>
+	const handleThumbnailKeyDown = useCallback(
+		(event: React.KeyboardEvent<HTMLElement>, index: number) => {
+			if (event.key === "Enter" || event.key === " ") {
+				event.preventDefault();
+				openModalAt(index);
+			}
+		},
+		[openModalAt]
+	);
 
-					<style>{`
-        .carousel-gallery-wrap {
-          gap: ${space};
-        }
-        .carousel-item {
-          flex: 0 0 calc(100% / ${columns});
-          scroll-snap-align: start;
-        }
-        @media only screen and (max-width: 989px) {
-          .carousel-item {
-            flex: 0 0 calc(100% / ${mdColumns});
-          }
-        }
-
-        @media only screen and (max-width: 575px) {
-          .carousel-item {
-            flex: 0 0 calc(100% / ${xsColumns});
-          }
-        }
-      `}</style>
-				</>
-			) : <ErrorMessage
+	if (!hasImages) {
+		return (
+			<ErrorMessage
 				message="There are no images to display. This could be because the image list is empty or there was an error loading the images."
 				suggestions={[
 					"Check if you've provided a valid list of images to the component.",
 					"Ensure that all image URLs are correct and accessible.",
 					"If the problem persists, try refreshing the page or contact support."
 				]}
-			/>}
+			/>
+		);
+	}
 
+	return (
+		<>
+			<motion.div variants={getAnimation(animation)} initial="initial" animate="animate" className="carousel-gallery-container">
+				<div className={`carousel-gallery-wrap ${squared ? "squared" : ""}`} ref={carouselRef}>
+					{imagesUrl.map((image, index) => (
+						<figure
+							key={index}
+							className="carousel-item"
+							role="button"
+							tabIndex={0}
+							aria-haspopup="dialog"
+							aria-expanded={isOpen && currentIndex === index}
+							aria-label={image.alt ? `Abrir visor para ${image.alt}` : `Abrir imagen ${index + 1}`}
+							onClick={() => openModalAt(index)}
+							onKeyDown={(event) => handleThumbnailKeyDown(event, index)}
+						>
+							<img
+								src={image.url}
+								alt={image.alt}
+								className={`image ${isRounded ? "is-rounded" : ""} ${isCircled ? "is-circled" : ""} ${hasShadow ? "has-shadow" : ""}`}
+								loading="lazy"
+							/>
+						</figure>
+					))}
+				</div>
+				<button
+					type="button"
+					className="left-button"
+					onClick={() => scrollToImage(currentIndex - 1)}
+					aria-label="Desplazar carrusel hacia la izquierda"
+				>
+					<PrevIcon />
+				</button>
+				<button
+					type="button"
+					className="right-button"
+					onClick={() => scrollToImage(currentIndex + 1)}
+					aria-label="Desplazar carrusel hacia la derecha"
+				>
+					<NextIcon />
+				</button>
+			</motion.div>
+
+			<AnimatePresence>
+				{isOpen && activeImage && (
+					<motion.div
+						{...dialogProps}
+						variants={getAnimation(animation)}
+						initial="initial"
+						animate="animate"
+						exit="exit"
+						className="image-gallery-pretty-box"
+						aria-label="Visor de carrusel de imágenes"
+						aria-describedby={figcaptionId}
+					>
+						<button
+							type="button"
+							className="bg-backdrop"
+							aria-hidden="true"
+							tabIndex={-1}
+							onClick={bgBackdropClose ? closeModal : undefined}
+						/>
+						<button
+							className="close-button"
+							type="button"
+							onClick={closeModal}
+							aria-label="Cerrar visor del carrusel"
+						>
+							<CloseIcon />
+						</button>
+						<button
+							className="left-button"
+							type="button"
+							disabled={!canGoPrevious}
+							onClick={goToPrevious}
+							aria-label="Mostrar imagen anterior"
+						>
+							<PrevIcon />
+						</button>
+						<button
+							className="right-button"
+							type="button"
+							disabled={!canGoNext}
+							onClick={goToNext}
+							aria-label="Mostrar imagen siguiente"
+						>
+							<NextIcon />
+						</button>
+						<AnimatePresence mode="wait">
+							<motion.figure
+								key={`${activeImage.url}-${currentIndex}`}
+								variants={getAnimation(animation)}
+								initial="initial"
+								animate="animate"
+								exit="exit"
+								className={`single-image ${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}
+							>
+								<img
+									src={activeImage.url}
+									alt={activeImage.alt}
+									loading="lazy"
+									className={`image ${isRounded ? "is-rounded" : ""} ${hasShadow ? "has-shadow" : ""}`}
+								/>
+								{figcaption && (
+									<figcaption id={figcaptionId} aria-live="polite" role="status">
+										{activeImage.figcaption}
+									</figcaption>
+								)}
+							</motion.figure>
+						</AnimatePresence>
+					</motion.div>
+				)}
+			</AnimatePresence>
+
+			<style>{`
+	      .carousel-gallery-wrap {
+	        gap: ${space};
+	      }
+	      .carousel-item {
+	        flex: 0 0 calc(100% / ${columns});
+	        scroll-snap-align: start;
+	      }
+	      @media only screen and (max-width: 989px) {
+	        .carousel-item {
+	          flex: 0 0 calc(100% / ${mdColumns});
+	        }
+	      }
+
+	      @media only screen and (max-width: 575px) {
+	        .carousel-item {
+	          flex: 0 0 calc(100% / ${xsColumns});
+	        }
+	      }
+	    `}</style>
 		</>
 	);
 }

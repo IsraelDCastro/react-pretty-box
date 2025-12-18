@@ -15,53 +15,37 @@ export default defineConfig(({ command, mode }) => ({
     command === "serve" ? tailwindcss() : undefined,
     react(),
     dts({
-      entryRoot: "src",
-      outDir: "dist",
-      insertTypesEntry: true,
-      tsconfigPath: "tsconfig.json",
-      rollupTypes: true,
-      include: ["src/components/**/*.tsx", "src/components/**/*.ts", "src/index.ts"],
-      exclude: [
-        "playground/**/*",
-        "src/__tests__/*",
-        "src/pages/**/*",
-        "src/layouts/**/*",
-        "src/router/**/*",
-        "src/test/**/*",
-        "src/assets/**/*"
-      ]
+      insertTypesEntry: true
     }),
-    // typescript2({
-    //   check: false,
-    //   include: ["src/components/**/*.tsx", "src/components/**/*.ts", "src/index.ts"],
-    //   tsconfigOverride: {
-    //     compilerOptions: {
-    //       outDir: "dist",
-    //       sourceMap: false,
-    //       declaration: true,
-    //       declarationMap: true
-    //     }
-    //   },
-    //   exclude: ["vite.config.ts", "src/pages", "src/router", "src/layouts", "src/examples", "playground", "playground/**/*"],
-    //   tsconfig: "tsconfig.json"
-    // }),
-    // ...(shouldAnalyze
-    //   ? [
-    //       visualizer({
-    //         filename: "stats.html",
-    //         open: false
-    //       }),
-    //       analyze({ summaryOnly: true })
-    //     ]
-    //   : [])
-  ].filter(Boolean) as any,
+    typescript2({
+      check: false,
+      include: ["src/components/**/*.tsx", "src/components/**/*.ts", "src/index.ts"],
+      tsconfigOverride: {
+        compilerOptions: {
+          outDir: "dist",
+          sourceMap: true,
+          declaration: true,
+          declarationMap: true
+        }
+      },
+      exclude: ["vite.config.ts", "src/pages", "src/router", "src/layouts", "src/examples"],
+      tsconfig: "tsconfig.json"
+    }),
+    ...(shouldAnalyze
+      ? [
+          visualizer({
+            filename: "stats.html",
+            open: false
+          }),
+          analyze({ summaryOnly: true })
+        ]
+      : [])
+  ],
   server: {
     // open: true
   },
 
   build: {
-    minify: "esbuild",
-    sourcemap: false,
     cssCodeSplit: true,
     cssMinify: true,
     lib: {
@@ -77,32 +61,17 @@ export default defineConfig(({ command, mode }) => ({
       plugins: [terser()],
       external: ["react", "react-dom", "framer-motion"],
       output: {
+        exports: "named",
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === "main.css") return "react-pretty-box.css";
           return assetInfo.name;
         },
         globals: {
           "react": "React",
-          "react-dom": "ReactDOM",
-          "framer-motion": "framerMotion"
-        },
-        compact: true,
-        // Preserve module structure for better tree-shaking
-        preserveModules: false,
-        preserveModulesRoot: "src",
-        interop: "auto",
-        exports: "named"
-      },
-      treeshake: {
-        moduleSideEffects: false,
-        propertyReadSideEffects: false
+          "react-dom": "ReactDOM"
+        }
       }
-    },
-    target: "es2020",
-    emptyOutDir: true,
-    reportCompressedSize: true,
-    assetsInlineLimit: 4096,
-    chunkSizeWarningLimit: 500
+    }
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
